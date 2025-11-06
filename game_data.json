@@ -1,0 +1,3426 @@
+{
+  "Zombies": {
+    "Ancient Egypt": [
+      {
+        "name": "Mummy Zombie",
+        "code": "mummy"
+      },
+      {
+        "name": "Conehead Mummy",
+        "code": "mummy_armor1"
+      },
+      {
+        "name": "Buckethead Mummy",
+        "code": "mummy_armor2"
+      },
+      {
+        "name": "Pyramid-Head Zombie",
+        "code": "mummy_armor4"
+      },
+      {
+        "name": "Egypt Flag Zombie",
+        "code": "mummy_flag"
+      },
+      {
+        "name": "Egypt Rally Zombie",
+        "code": "mummy_flag_veteran"
+      },
+      {
+        "name": "Ra Zombie",
+        "code": "ra"
+      },
+      {
+        "name": "Camel Zombies (Segment)",
+        "code": "camel_segment"
+      },
+      {
+        "name": "Camel Zombies (3 parts)",
+        "code": "camel_onehump"
+      },
+      {
+        "name": "Camel Zombies (4 parts)",
+        "code": "camel_twohump"
+      },
+      {
+        "name": "Camel Zombies (5 parts)",
+        "code": "camel_threehump"
+      },
+      {
+        "name": "Camel Zombies (6 parts)",
+        "code": "camel_manyhump"
+      },
+      {
+        "name": "Mummy Memory Camels (Segment)",
+        "code": "camel_segment_touch"
+      },
+      {
+        "name": "Mummy Memory Camels (3 parts)",
+        "code": "camel_onehump_touch"
+      },
+      {
+        "name": "Mummy Memory Camels (4 parts)",
+        "code": "camel_twohump_touch"
+      },
+      {
+        "name": "Mummy Memore Camels (5 parts)",
+        "code": "camel_threehump_touch"
+      },
+      {
+        "name": "Mummy Memory Camels (6 parts)",
+        "code": "camel_manyhump_touch"
+      },
+      {
+        "name": "Explorer Zombie",
+        "code": "explorer"
+      },
+      {
+        "name": "Torchlight Zombie",
+        "code": "explorer_veteran"
+      },
+      {
+        "name": "Tomb Raiser Zombie",
+        "code": "tomb_raiser"
+      },
+      {
+        "name": "Pharaoh Inner Zombie",
+        "code": "pharaoh_inner"
+      },
+      {
+        "name": "Weaker Pharaoh Zombie",
+        "code": "pharaoh_weak"
+      },
+      {
+        "name": "Pharaoh Zombie",
+        "code": "pharaoh"
+      },
+      {
+        "name": "Imp Mummy",
+        "code": "egypt_imp"
+      },
+      {
+        "name": "Mummified Gargantuar",
+        "code": "egypt_gargantuar"
+      }
+    ],
+    "Pirate Seas": [
+      {
+        "name": "Pirate Zombie",
+        "code": "pirate"
+      },
+      {
+        "name": "Conehead Pirate",
+        "code": "pirate_armor1"
+      },
+      {
+        "name": "Buckethead Pirate",
+        "code": "pirate_armor2"
+      },
+      {
+        "name": "Barrelhead Zombie",
+        "code": "pirate_armor4"
+      },
+      {
+        "name": "Flag Pirate Zombie",
+        "code": "pirate_flag"
+      },
+      {
+        "name": "Jolly Roger Zombie",
+        "code": "pirate_flag_veteran"
+      },
+      {
+        "name": "Swashbuckler Zombie",
+        "code": "swashbuckler"
+      },
+      {
+        "name": "Seagull Zombie",
+        "code": "seagull"
+      },
+      {
+        "name": "Pelican Zombie",
+        "code": "pelican"
+      },
+      {
+        "name": "Barrel Roller Zombie",
+        "code": "barrelroller"
+      },
+      {
+        "name": "Pirate Barrel",
+        "code": "pirate_barrel"
+      },
+      {
+        "name": "Imp Pirate Zombie",
+        "code": "pirate_imp"
+      },
+      {
+        "name": "Imp Cannon",
+        "code": "cannon"
+      },
+      {
+        "name": "Pirate Captain Zombie",
+        "code": "pirate_captain"
+      },
+      {
+        "name": "Parrot Zombie",
+        "code": "pirate_captain_parrot"
+      },
+      {
+        "name": "Gargantuar Pirate",
+        "code": "pirate_gargantuar"
+      }
+    ],
+    "Wild West": [
+      {
+        "name": "Cowboy Zombie",
+        "code": "cowboy"
+      },
+      {
+        "name": "Conehead Cowboy",
+        "code": "cowboy_armor1"
+      },
+      {
+        "name": "Buckethead Cowboy",
+        "code": "cowboy_armor2"
+      },
+      {
+        "name": "Cart-Head Zombie",
+        "code": "cowboy_armor4"
+      },
+      {
+        "name": "Flag Cowboy Zombie",
+        "code": "cowboy_flag"
+      },
+      {
+        "name": "Cowboy Rally Zombie",
+        "code": "cowboy_flag_veteran"
+      },
+      {
+        "name": "Prospector Zombie",
+        "code": "prospector"
+      },
+      {
+        "name": "Pianist Zombie",
+        "code": "piano"
+      },
+      {
+        "name": "Poncho Zombie",
+        "code": "poncho"
+      },
+      {
+        "name": "Poncho Zombie (No plate)",
+        "code": "poncho_no_plate"
+      },
+      {
+        "name": "Poncho Zombie (Always has plate)",
+        "code": "poncho_plate"
+      },
+      {
+        "name": "Chicken Wrangler Zombie",
+        "code": "chicken_farmer"
+      },
+      {
+        "name": "Chicken",
+        "code": "chicken"
+      },
+      {
+        "name": "Jack O' Chicken",
+        "code": "chicken_pumpkin"
+      },
+      {
+        "name": "Zombie Bull",
+        "code": "west_bull"
+      },
+      {
+        "name": "Rodeo Legend Zombie",
+        "code": "west_bull_veteran"
+      },
+      {
+        "name": "Zombie Bull Rider",
+        "code": "west_bullrider"
+      },
+      {
+        "name": "Cowboy Gargantuar",
+        "code": "cowboy_gargantuar"
+      }
+    ],
+    "Kongfu World": [
+      {
+        "name": "Kongfu Zombie",
+        "code": "kongfu"
+      },
+      {
+        "name": "Kongfu Conehead Zombie",
+        "code": "kongfu_armor1"
+      },
+      {
+        "name": "Kongfu Kettlehead Zombie",
+        "code": "kongfu_armor2"
+      },
+      {
+        "name": "Kongfu Admiral Helmet Zombie",
+        "code": "kongfu_armor3"
+      },
+      {
+        "name": "Flag Kongfu Zombie",
+        "code": "kongfu_flag"
+      },
+      {
+        "name": "Kongfu Rally Zombie",
+        "code": "kongfu_flag_veteran"
+      },
+      {
+        "name": "Kongfu Torch Zombie",
+        "code": "kongfu_torch"
+      },
+      {
+        "name": "Hammer Zombie",
+        "code": "kongfu_hammer"
+      },
+      {
+        "name": "Drinking Zombie",
+        "code": "kongfu_drink"
+      },
+      {
+        "name": "Qigong Zombie",
+        "code": "kongfu_chi"
+      },
+      {
+        "name": "Exploding Zombie",
+        "code": "kongfu_bomb"
+      },
+      {
+        "name": "Gong Zombie",
+        "code": "kongfu_gong"
+      },
+      {
+        "name": "Monk Zombie",
+        "code": "monk"
+      },
+      {
+        "name": "Monk Conehead Zombie",
+        "code": "monk_armor1"
+      },
+      {
+        "name": "Monk Kettlehead Zombie",
+        "code": "monk_armor2"
+      },
+      {
+        "name": "Monk Admiral Helmet Zombie",
+        "code": "monk_armor3"
+      },
+      {
+        "name": "Flag Monk Zombie",
+        "code": "monk_flag"
+      },
+      {
+        "name": "Monk Rally Zombie",
+        "code": "monk_flag_veteran"
+      },
+      {
+        "name": "Torch Monk Zombie",
+        "code": "monk_torch"
+      },
+      {
+        "name": "Blade Monk Zombie",
+        "code": "monk_blade"
+      },
+      {
+        "name": "Nunchaku Monk Zombie",
+        "code": "monk_nunchaku"
+      },
+      {
+        "name": "Drinking Monk Zombie",
+        "code": "monk_drink"
+      },
+      {
+        "name": "Imp Monk",
+        "code": "monk_imp"
+      },
+      {
+        "name": "Rocket Imp",
+        "code": "kongfu_rocket_imp"
+      },
+      {
+        "name": "Qigong Bronze",
+        "code": "kongfu_magic_bronze"
+      },
+      {
+        "name": "Xiake Bronze",
+        "code": "kongfu_agile_bronze"
+      },
+      {
+        "name": "Han Bronze",
+        "code": "kongfu_strong_bronze"
+      },
+      {
+        "name": "Fan Swinging Abbot",
+        "code": "abbot_fan"
+      },
+      {
+        "name": "Torch Abbot",
+        "code": "abbot_torch"
+      },
+      {
+        "name": "Qigong Abbot",
+        "code": "abbot_chi"
+      },
+      {
+        "name": "Abbot Imp",
+        "code": "abbot_imp"
+      },
+      {
+        "name": "Abbot Zombie",
+        "code": "abbot"
+      },
+      {
+        "name": "Abbot Conehead",
+        "code": "abbot_armor1"
+      },
+      {
+        "name": "Abbot Kettlehead Zombie",
+        "code": "abbot_armor2"
+      },
+      {
+        "name": "Abbot Helmet Zombie",
+        "code": "abbot_armor3"
+      },
+      {
+        "name": "Flag Abbot Zombie",
+        "code": "abbot_flag"
+      },
+      {
+        "name": "Abbot Rally Zombie",
+        "code": "abbot_flag_veteran"
+      }
+    ],
+    "Far Future": [
+      {
+        "name": "Future Zombie",
+        "code": "future"
+      },
+      {
+        "name": "Future Conehead",
+        "code": "future_armor1"
+      },
+      {
+        "name": "Future Buckethead",
+        "code": "future_armor2"
+      },
+      {
+        "name": "Holo-Head Zombie",
+        "code": "future_armor4"
+      },
+      {
+        "name": "Future Flag Zombie",
+        "code": "future_flag"
+      },
+      {
+        "name": "Robo-Rally Zombie",
+        "code": "future_flag_veteran"
+      },
+      {
+        "name": "Jetpack Zombie",
+        "code": "future_jetpack"
+      },
+      {
+        "name": "Disco Jetpack Zombie",
+        "code": "future_jetpack_disco"
+      },
+      {
+        "name": "Blastronaut Zombie",
+        "code": "future_jetpack_veteran"
+      },
+      {
+        "name": "Shield Zombie",
+        "code": "future_protector"
+      },
+      {
+        "name": "Shield",
+        "code": "future_protector_shield"
+      },
+      {
+        "name": "Infi-nut Shield",
+        "code": "future_infinut_shield"
+      },
+      {
+        "name": "Robo-Cone Zombie",
+        "code": "mech_cone"
+      },
+      {
+        "name": "Bug-Bot Imp",
+        "code": "future_imp"
+      },
+      {
+        "name": "Disco-tron 3000",
+        "code": "disco_mech"
+      },
+      {
+        "name": "Mecha-Football Zombie",
+        "code": "football_mech"
+      },
+      {
+        "name": "Gargantuar Prime",
+        "code": "future_gargantuar"
+      }
+    ],
+    "Dark Ages": [
+      {
+        "name": "Peasant Zombie",
+        "code": "dark"
+      },
+      {
+        "name": "Conehead Peasant",
+        "code": "dark_armor1"
+      },
+      {
+        "name": "Buckethead Peasant",
+        "code": "dark_armor2"
+      },
+      {
+        "name": "Knight Zombie",
+        "code": "dark_armor3"
+      },
+      {
+        "name": "Castle-headed Zombie",
+        "code": "dark_armor4"
+      },
+      {
+        "name": "Peasant Flag Zombie",
+        "code": "dark_flag"
+      },
+      {
+        "name": "Peasant Rally Zombie",
+        "code": "dark_flag_veteran"
+      },
+      {
+        "name": "Imp Monk Zombie",
+        "code": "dark_imp"
+      },
+      {
+        "name": "Jester Zombie",
+        "code": "dark_juggler"
+      },
+      {
+        "name": "Wizard Zombie",
+        "code": "dark_wizard"
+      },
+      {
+        "name": "Master Enchanter Zombie",
+        "code": "dark_wizard_veteran"
+      },
+      {
+        "name": "Zombie King",
+        "code": "dark_king"
+      },
+      {
+        "name": "Arthur King Zombie",
+        "code": "dark_king_veteran"
+      },
+      {
+        "name": "Imp Dragon Zombie",
+        "code": "dark_imp_dragon"
+      },
+      {
+        "name": "Dark Ages Gargantuar",
+        "code": "dark_gargantuar"
+      }
+    ],
+    "Big Wave Beach": [
+      {
+        "name": "Pompadour Zombie",
+        "code": "beach"
+      },
+      {
+        "name": "Pompadour Conehead",
+        "code": "beach_armor1"
+      },
+      {
+        "name": "Pompadour Buckethead",
+        "code": "beach_armor2"
+      },
+      {
+        "name": "Crab-Head Pompadour",
+        "code": "beach_armor4"
+      },
+      {
+        "name": "Bikini Zombie",
+        "code": "beach_fem"
+      },
+      {
+        "name": "Bikini Conehead",
+        "code": "beach_fem_armor1"
+      },
+      {
+        "name": "Bikini Buckethead",
+        "code": "beach_fem_armor2"
+      },
+      {
+        "name": "Crab-head Bikini",
+        "code": "beach_fem_armor4"
+      },
+      {
+        "name": "Beach Flag Zombie",
+        "code": "beach_flag"
+      },
+      {
+        "name": "Beach Rally Zombie",
+        "code": "beach_flag_veteran"
+      },
+      {
+        "name": "Snorkel Zombie",
+        "code": "beach_snorkel"
+      },
+      {
+        "name": "Surfer Zombie",
+        "code": "beach_surfer"
+      },
+      {
+        "name": "Motor Surfer Zombie",
+        "code": "beach_surfer_veteran"
+      },
+      {
+        "name": "Imp Mermaid Zombie",
+        "code": "beach_imp"
+      },
+      {
+        "name": "Octo Zombie",
+        "code": "beach_octopus"
+      },
+      {
+        "name": "Fisherman Zombie",
+        "code": "beach_fisherman"
+      },
+      {
+        "name": "Deep Sea Gargantuar",
+        "code": "beach_gargantuar"
+      }
+    ],
+    "Frostbite Caves": [
+      {
+        "name": "Cave Zombie",
+        "code": "iceage"
+      },
+      {
+        "name": "Cave Conehead",
+        "code": "iceage_armor1"
+      },
+      {
+        "name": "Cave Buckethead",
+        "code": "iceage_armor2"
+      },
+      {
+        "name": "Blockhead Zombie",
+        "code": "iceage_armor3"
+      },
+      {
+        "name": "Mammoth-headed Zombie",
+        "code": "iceage_armor4"
+      },
+      {
+        "name": "Cave Flag Zombie",
+        "code": "iceage_flag"
+      },
+      {
+        "name": "Cave Rally Zombie",
+        "code": "iceage_flag_veteran"
+      },
+      {
+        "name": "Hunter Zombie",
+        "code": "iceage_hunter"
+      },
+      {
+        "name": "Hunter Leader Zombie",
+        "code": "iceage_hunter_veteran"
+      },
+      {
+        "name": "Dodo Rider Zombie",
+        "code": "iceage_dodo"
+      },
+      {
+        "name": "Yeti Imp",
+        "code": "iceage_imp"
+      },
+      {
+        "name": "Troglobite",
+        "code": "iceage_troglobite"
+      },
+      {
+        "name": "Troglobite (1-Block)",
+        "code": "iceage_troglobite_1block"
+      },
+      {
+        "name": "Troglobite (2-Block)",
+        "code": "iceage_troglobite_2block"
+      },
+      {
+        "name": "Troglobite Warchief",
+        "code": "iceage_troglobite_veteran"
+      },
+      {
+        "name": "Weasel Hoarder",
+        "code": "iceage_weaselhoarder"
+      },
+      {
+        "name": "Ice Weasel",
+        "code": "iceage_weasel"
+      },
+      {
+        "name": "Sloth Gargantuar",
+        "code": "iceage_gargantuar"
+      }
+    ],
+    "Lost City": [
+      {
+        "name": "Adventurer Zombie",
+        "code": "lostcity"
+      },
+      {
+        "name": "Conehead Adventurer",
+        "code": "lostcity_armor1"
+      },
+      {
+        "name": "Buckethead Adventurer",
+        "code": "lostcity_armor2"
+      },
+      {
+        "name": "Flag Adventurer",
+        "code": "lostcity_flag"
+      },
+      {
+        "name": "Excavator Zombie",
+        "code": "lostcity_excavator"
+      },
+      {
+        "name": "Parasol Zombie",
+        "code": "lostcity_jane"
+      },
+      {
+        "name": "Lost Pilot Zombie",
+        "code": "lostcity_lostpilot"
+      },
+      {
+        "name": "Lost City Imp",
+        "code": "lostcity_imp"
+      },
+      {
+        "name": "Bug Zombie",
+        "code": "lostcity_bug"
+      },
+      {
+        "name": "Bug Zombie (Conehead)",
+        "code": "lostcity_bug_armor1"
+      },
+      {
+        "name": "Bug Zombie (Buckethead)",
+        "code": "lostcity_bug_armor2"
+      },
+      {
+        "name": "Imp Porter",
+        "code": "lostcity_impporter"
+      },
+      {
+        "name": "Relic Hunter Zombie",
+        "code": "lostcity_relichunter"
+      },
+      {
+        "name": "Turquoise Skull Zombie",
+        "code": "lostcity_crystalskull"
+      },
+      {
+        "name": "Porter Gargantuar",
+        "code": "lostcity_gargantuar"
+      }
+    ],
+    "Sky City": [
+      {
+        "name": "Pilot Zombie",
+        "code": "sky"
+      },
+      {
+        "name": "Conehead Pilot",
+        "code": "sky_armor1"
+      },
+      {
+        "name": "Buckethead Pilot",
+        "code": "sky_armor2"
+      },
+      {
+        "name": "Flag Pilot",
+        "code": "sky_flag"
+      },
+      {
+        "name": "Zombie Fighter",
+        "code": "skycity_battleplane"
+      },
+      {
+        "name": "Flying Imp",
+        "code": "skycity_ggtimp"
+      },
+      {
+        "name": "Flying Gargantuar",
+        "code": "skycity_gargantuar"
+      },
+      {
+        "name": "Double-Cabin Aircraft Zombie",
+        "code": "skycity_twinsplane"
+      },
+      {
+        "name": "Lightning Gun Zombie",
+        "code": "skycity_electric"
+      },
+      {
+        "name": "Arbiter-X",
+        "code": "invisible_plane"
+      },
+      {
+        "name": "Missile Zombie",
+        "code": "air_missile_launcher"
+      },
+      {
+        "name": "Missile Zombie's Missile",
+        "code": "air_missile"
+      }
+    ],
+    "Neon Mixtape Tour": [
+      {
+        "name": "Neon Zombie",
+        "code": "eighties"
+      },
+      {
+        "name": "Neon Conehead",
+        "code": "eighties_armor1"
+      },
+      {
+        "name": "Neon Buckethead",
+        "code": "eighties_armor2"
+      },
+      {
+        "name": "Neon Flag Zombie",
+        "code": "eighties_flag"
+      },
+      {
+        "name": "Punk Zombie",
+        "code": "eighties_punk"
+      },
+      {
+        "name": "Glitter Zombie",
+        "code": "eighties_glitter"
+      },
+      {
+        "name": "MC Zom-B",
+        "code": "eighties_mc"
+      },
+      {
+        "name": "Impunk",
+        "code": "eighties_imp"
+      },
+      {
+        "name": "Breakdancer Zombie",
+        "code": "eighties_breakdancer"
+      },
+      {
+        "name": "Arcade Zombie",
+        "code": "eighties_arcade"
+      },
+      {
+        "name": "8-Bit Zombie",
+        "code": "eighties_8bit"
+      },
+      {
+        "name": "8-Bit Zombie (Conehead)",
+        "code": "eighties_8bit_armor1"
+      },
+      {
+        "name": "8-Bit Zombie (Buckethead)",
+        "code": "eighties_8bit_armor2"
+      },
+      {
+        "name": "Boombox Zombie",
+        "code": "eighties_boombox"
+      },
+      {
+        "name": "Hair Metal Gargantuar",
+        "code": "eighties_gargantuar"
+      }
+    ],
+    "Jurassic Marsh": [
+      {
+        "name": "Jurassic Zombie",
+        "code": "dino"
+      },
+      {
+        "name": "Jurassic Conehead",
+        "code": "dino_armor1"
+      },
+      {
+        "name": "Jurassic Buckethead",
+        "code": "dino_armor2"
+      },
+      {
+        "name": "Jurassic Fossilhead",
+        "code": "dino_armor3"
+      },
+      {
+        "name": "Amberhead Zombie",
+        "code": "dino_armor4"
+      },
+      {
+        "name": "Jurassic Flag Zombie",
+        "code": "dino_flag"
+      },
+      {
+        "name": "Jurassic Rally Zombie",
+        "code": "dino_flag_veteran"
+      },
+      {
+        "name": "Jurassic Imp",
+        "code": "dino_imp"
+      },
+      {
+        "name": "Jurassic Bully",
+        "code": "dino_bully"
+      },
+      {
+        "name": "Jurassic Rockpuncher",
+        "code": "dino_bully_veteran"
+      },
+      {
+        "name": "Jurassic Gargantuar",
+        "code": "dino_gargantuar"
+      }
+    ],
+    "Modern Day": [
+      {
+        "name": "Basic Zombie",
+        "code": "tutorial"
+      },
+      {
+        "name": "Conehead Zombie",
+        "code": "tutorial_armor1"
+      },
+      {
+        "name": "Buckethead Zombie",
+        "code": "tutorial_armor2"
+      },
+      {
+        "name": "Brickhead Zombie",
+        "code": "tutorial_armor4"
+      },
+      {
+        "name": "Flag Zombie",
+        "code": "tutorial_flag"
+      },
+      {
+        "name": "Rally Zombie",
+        "code": "tutorial_flag_veteran"
+      },
+      {
+        "name": "Ducky Tube Zombie",
+        "code": "duckytube"
+      },
+      {
+        "name": "Conehead Ducky Tube Zombie",
+        "code": "duckytube_armor1"
+      },
+      {
+        "name": "Buckethead Ducky Tube Zombie",
+        "code": "duckytube_armor2"
+      },
+      {
+        "name": "Brickhead Ducky Tube Zombie",
+        "code": "duckytube_armor4"
+      },
+      {
+        "name": "Ducky Tube Flag Zombie",
+        "code": "duckytube_flag"
+      },
+      {
+        "name": "Ducky Tube Rally Zombie",
+        "code": "duckytube_flag_veteran"
+      },
+      {
+        "name": "Imp",
+        "code": "tutorial_imp"
+      },
+      {
+        "name": "Gargantuar",
+        "code": "tutorial_gargantuar"
+      },
+      {
+        "name": "Newspaper Zombie",
+        "code": "modern_newspaper"
+      },
+      {
+        "name": "Sunday Edition Zombie",
+        "code": "newspaper_veteran"
+      },
+      {
+        "name": "Balloon Zombie",
+        "code": "modern_balloon"
+      },
+      {
+        "name": "All-Star Zombie",
+        "code": "modern_allstar"
+      },
+      {
+        "name": "Super-Fan Imp",
+        "code": "modern_superfanimp"
+      },
+      {
+        "name": "Zomboni",
+        "code": "zomboni"
+      },
+      {
+        "name": "Bobsled Zombie",
+        "code": "bobsled"
+      },
+      {
+        "name": "Bobsled Team",
+        "code": "bobsled_team"
+      },
+      {
+        "name": "Catapult Zombie",
+        "code": "catapult"
+      }
+    ],
+    "Ancient Rome": [
+      {
+        "name": "Roman Zombie",
+        "code": "roman"
+      },
+      {
+        "name": "Roman Conehead",
+        "code": "roman_armor1"
+      },
+      {
+        "name": "Roman Buckethead",
+        "code": "roman_armor2"
+      },
+      {
+        "name": "Centurion Zombie",
+        "code": "roman_armor3"
+      },
+      {
+        "name": "Bust Head Zombie",
+        "code": "roman_armor4"
+      },
+      {
+        "name": "Roman Flag Zombie",
+        "code": "roman_flag"
+      },
+      {
+        "name": "Roman Imp",
+        "code": "roman_imp"
+      },
+      {
+        "name": "Gladiator Gargantuar",
+        "code": "roman_gargantuar"
+      },
+      {
+        "name": "Healer Zombie",
+        "code": "roman_healer"
+      },
+      {
+        "name": "Roman Shield Zombie (Almanac)",
+        "code": "roman_shield_almanac"
+      },
+      {
+        "name": "Roman Shield Zombie (Segment)",
+        "code": "roman_segment"
+      },
+      {
+        "name": "Roman Shield Zombie (Top)",
+        "code": "roman_shield_top"
+      },
+      {
+        "name": "Roman Shield Pair",
+        "code": "roman_shield_pair"
+      },
+      {
+        "name": "Roman Shield Triad",
+        "code": "roman_shield_triad"
+      },
+      {
+        "name": "Roman Ballista",
+        "code": "roman_ballista"
+      },
+      {
+        "name": "Zombie Medusa",
+        "code": "roman_medusa"
+      }
+    ],
+    "Arena": [
+      {
+        "name": "Hamster Ball",
+        "code": "hamster_ball"
+      },
+      {
+        "name": "Treasure Yeti (Arena)",
+        "code": "joustyeti"
+      },
+      {
+        "name": "Zombie Chicken (Arena)",
+        "code": "chicken_battlez"
+      },
+      {
+        "name": "Zombie Turkey (Arena)",
+        "code": "foodfight_turkey_battlez"
+      },
+      {
+        "name": "Cardio Zombie (Phase 1)",
+        "code": "general_treadmill_phase1"
+      },
+      {
+        "name": "Cardio Zombie (Phase 2)",
+        "code": "general_treadmill_phase2"
+      },
+      {
+        "name": "Cardio Zombie (Phase 3)",
+        "code": "general_treadmill_phase3"
+      },
+      {
+        "name": "Z-Mech (Phase 1)",
+        "code": "general_zmech_phase1"
+      },
+      {
+        "name": "Z-Mech (Phase 2)",
+        "code": "general_zmech_phase2"
+      },
+      {
+        "name": "Z-Mech (Phase 3)",
+        "code": "general_zmech_phase3"
+      },
+      {
+        "name": "Roman Caesar Zombie (Phase 1)",
+        "code": "general_caesar_phase1"
+      },
+      {
+        "name": "Roman Caesar Zombie (Phase 2)",
+        "code": "general_caesar_phase2"
+      },
+      {
+        "name": "Roman Caesar Zombie (Phase 3)",
+        "code": "general_caesar_phase3"
+      }
+    ],
+    "Special Zombies": [
+      {
+        "name": "Treasure Yeti",
+        "code": "treasureyeti"
+      },
+      {
+        "name": "Vase Gargantuar",
+        "code": "vase_gargantuar"
+      },
+      {
+        "name": "Statue Zombie",
+        "code": "zombie_statue"
+      }
+    ],
+    "Zomboids": [
+      {
+        "name": "Zomboid",
+        "code": "zoybeanpod_basic"
+      },
+      {
+        "name": "Carrothead Zomboid",
+        "code": "zoybeanpod_armor1"
+      },
+      {
+        "name": "Melonhead Zomboid",
+        "code": "zoybeanpod_armor2"
+      },
+      {
+        "name": "Gargantuar Zomboid",
+        "code": "zoybeanpod_gargantuar"
+      },
+      {
+        "name": "Imp Pear Imp",
+        "code": "imppear_imp"
+      },
+      {
+        "name": "Gum",
+        "code": "gum"
+      }
+    ],
+    "Lunar New Year": [
+      {
+        "name": "Lunar Basic",
+        "code": "lunar"
+      },
+      {
+        "name": "Lunar Conehead",
+        "code": "lunar_armor1"
+      },
+      {
+        "name": "Lunar Buckethead",
+        "code": "lunar_armor2"
+      },
+      {
+        "name": "Lunar Flag",
+        "code": "lunar_flag"
+      },
+      {
+        "name": "Lunar Superfanimp",
+        "code": "lunar_superfanimp"
+      },
+      {
+        "name": "Lunar Camel (Segment)",
+        "code": "lunar_camel_segment"
+      },
+      {
+        "name": "Lunar Camel (3 parts)",
+        "code": "lunar_camel_onehump"
+      },
+      {
+        "name": "Lunar Camel (4 parts)",
+        "code": "lunar_camel_twohump"
+      },
+      {
+        "name": "Lunar Camel (6 parts)",
+        "code": "lunar_camel_manyhump"
+      }
+    ],
+    "Valenbrainz": [
+      {
+        "name": "Valenbrainz Basic",
+        "code": "valentines"
+      },
+      {
+        "name": "Valenbrainz Conehead",
+        "code": "valentines_armor1"
+      },
+      {
+        "name": "Valenbrainz Buckethead",
+        "code": "valentines_armor2"
+      },
+      {
+        "name": "Valenbrainz Flag",
+        "code": "valentines_flag"
+      },
+      {
+        "name": "Valenbrainz Imp",
+        "code": "valentines_imp"
+      },
+      {
+        "name": "Valenbrainz Gargantuar",
+        "code": "valentines_gargantuar"
+      }
+    ],
+    "Luck 'O the Zombie": [
+      {
+        "name": "Paddy's Zombie",
+        "code": "stpatrick"
+      },
+      {
+        "name": "Paddy's Conehead",
+        "code": "stpatrick_armor1"
+      },
+      {
+        "name": "Paddy's Buckethead",
+        "code": "stpatrick_armor2"
+      },
+      {
+        "name": "Leprechaun Imp",
+        "code": "leprachaun_imp"
+      },
+      {
+        "name": "Leprechaun Dodo Rider",
+        "code": "leprachaun_dodo"
+      }
+    ],
+    "The Springening": [
+      {
+        "name": "Springening Zombie",
+        "code": "spring"
+      },
+      {
+        "name": "Springening Conehead",
+        "code": "spring_armor1"
+      },
+      {
+        "name": "Springening Buckethead",
+        "code": "spring_armor2"
+      },
+      {
+        "name": "Springening Flag Zombie",
+        "code": "spring_flag"
+      },
+      {
+        "name": "Springening Imp",
+        "code": "spring_imp"
+      },
+      {
+        "name": "Springening Imp (April Fools)",
+        "code": "spring_imp_af"
+      },
+      {
+        "name": "Springening Camels (Segment)",
+        "code": "spring_camel_segment"
+      },
+      {
+        "name": "Springening Camels (3 parts)",
+        "code": "spring_camel_onehump"
+      },
+      {
+        "name": "Springening Camels (4 parts)",
+        "code": "spring_camel_twohump"
+      },
+      {
+        "name": "Springening Camels (6 parts)",
+        "code": "spring_camel_manyhump"
+      },
+      {
+        "name": "Springening Poncho Zombie",
+        "code": "spring_poncho"
+      },
+      {
+        "name": "Springening Poncho Zombie (No plate)",
+        "code": "spring_poncho_no_plate"
+      },
+      {
+        "name": "Springening Poncho Zombie (Always has plate)",
+        "code": "spring_poncho_plate"
+      },
+      {
+        "name": "Springening Wizard Zombie",
+        "code": "spring_wizard"
+      },
+      {
+        "name": "Springening Gargantuar",
+        "code": "spring_gargantuar"
+      }
+    ],
+    "Birthdayz": [
+      {
+        "name": "Birthdayz Zombie",
+        "code": "birthday"
+      },
+      {
+        "name": "Birthdayz Flag Zombie",
+        "code": "birthday_flag"
+      },
+      {
+        "name": "Birthdayz Pharaoh",
+        "code": "birthday_pharaoh"
+      },
+      {
+        "name": "Birthdayz Barrel",
+        "code": "birthday_barrel"
+      },
+      {
+        "name": "Birthdayz Jetpack",
+        "code": "birthday_jetpack"
+      },
+      {
+        "name": "Birthdayz Jester",
+        "code": "birthday_juggler"
+      },
+      {
+        "name": "Birthdayz Troglobite (3 blocks)",
+        "code": "birthday_troglobite"
+      },
+      {
+        "name": "Birthdayz Troglobite (2 blocks)",
+        "code": "birthday_troglobite_2block"
+      },
+      {
+        "name": "Birthdayz Troglobite (1 block)",
+        "code": "birthday_troglobite_1block"
+      },
+      {
+        "name": "Birthdayz Gargantuar",
+        "code": "birthday_gargantuar"
+      },
+      {
+        "name": "#caketank",
+        "code": "caketank"
+      }
+    ],
+    "Summer Nights": [
+      {
+        "name": "Summer Zombie",
+        "code": "summer_basic"
+      },
+      {
+        "name": "Summer Conehead",
+        "code": "summer_armor1"
+      },
+      {
+        "name": "Summer Buckethead",
+        "code": "summer_armor2"
+      },
+      {
+        "name": "Summer Flag Zombie",
+        "code": "summer_flag"
+      },
+      {
+        "name": "Summer Bug",
+        "code": "summer_bug"
+      },
+      {
+        "name": "Summer Bug (Conehead)",
+        "code": "summer_bug_armor1"
+      },
+      {
+        "name": "Summer Bug (Buckethead)",
+        "code": "summer_bug_armor2"
+      },
+      {
+        "name": "Hot Dog Imp",
+        "code": "summer_imp"
+      },
+      {
+        "name": "King of the Grill (Gargantuar)",
+        "code": "summer_gargantuar"
+      }
+    ],
+    "Big Brainz": [
+      {
+        "name": "Big Brainz Basic",
+        "code": "bighead"
+      },
+      {
+        "name": "Big Brainz Conehead",
+        "code": "bighead_armor1"
+      },
+      {
+        "name": "Big Brainz Buckethead",
+        "code": "bighead_armor2"
+      },
+      {
+        "name": "Big Brainz Flag Zombie",
+        "code": "bighead_flag"
+      },
+      {
+        "name": "Big Brainz Imp",
+        "code": "bighead_imp"
+      },
+      {
+        "name": "Big Brainz Gargantuar",
+        "code": "bighead_gargantuar"
+      },
+      {
+        "name": "Big Brainz Newspaper",
+        "code": "bighead_newspaper"
+      },
+      {
+        "name": "Big Brainz Balloon",
+        "code": "bighead_balloon"
+      },
+      {
+        "name": "Big Brainz All-Star",
+        "code": "bighead_allstar"
+      },
+      {
+        "name": "Big Brainz Super-Fan Imp",
+        "code": "bighead_superfan"
+      },
+      {
+        "name": "Big Brainz Barrel Roller",
+        "code": "bighead_barrelroller"
+      },
+      {
+        "name": "Big Brainz Barrel",
+        "code": "bighead_barrel"
+      }
+    ],
+    "Lawn of Doom": [
+      {
+        "name": "Spooky Scary Zombie",
+        "code": "halloween"
+      },
+      {
+        "name": "Spooky Scary Conehead",
+        "code": "halloween_armor1"
+      },
+      {
+        "name": "Spooky Scary Buckethead",
+        "code": "halloween_armor2"
+      },
+      {
+        "name": "Scarecrow Flag Zombie",
+        "code": "halloween_flag"
+      },
+      {
+        "name": "Bride Imp",
+        "code": "halloween_imp"
+      },
+      {
+        "name": "Frankentuar",
+        "code": "halloween_gargantuar"
+      }
+    ],
+    "Plants vs. Zombies Heroes Event": [
+      {
+        "name": "Electric Boogaloo",
+        "code": "hero_electricboogaloo"
+      },
+      {
+        "name": "Impfinity",
+        "code": "hero_impfinity"
+      },
+      {
+        "name": "Rustbolt",
+        "code": "hero_rustbolt"
+      },
+      {
+        "name": "Super Brainz",
+        "code": "hero_superbrainz"
+      },
+      {
+        "name": "Heroic Barrel Roller",
+        "code": "hero_barrelroller"
+      },
+      {
+        "name": "Heroic Barrel",
+        "code": "hero_barrel"
+      },
+      {
+        "name": "The Smash",
+        "code": "hero_smash"
+      }
+    ],
+    "Food Fight": [
+      {
+        "name": "Food-Fighter Zombie",
+        "code": "foodfight"
+      },
+      {
+        "name": "Food-Fighter Conehead",
+        "code": "foodfight_armor1"
+      },
+      {
+        "name": "Food-Fighter Buckethead",
+        "code": "foodfight_armor2"
+      },
+      {
+        "name": "Food-Fighter Flag",
+        "code": "foodfight_flag"
+      },
+      {
+        "name": "Chefster",
+        "code": "foodfight_chefster"
+      },
+      {
+        "name": "Turkey Wrangler",
+        "code": "foodfight_gobbler_king"
+      },
+      {
+        "name": "Turkey",
+        "code": "foodfight_turkey"
+      }
+    ],
+    "Backyard Brain Bowl": [
+      {
+        "name": "Lawnbowl Zombie",
+        "code": "sportzball"
+      },
+      {
+        "name": "Lawnbowl Zombie (foam finger)",
+        "code": "sportzball_foam"
+      },
+      {
+        "name": "Lawnbowl Conehead",
+        "code": "sportzball_armor1"
+      },
+      {
+        "name": "Lawnbowl Conehead (foam finger)",
+        "code": "sportzball_armor1_foam"
+      },
+      {
+        "name": "Lawnbowl Buckethead",
+        "code": "sportzball_armor2"
+      },
+      {
+        "name": "Lawnbowl Buckethead (foam finger)",
+        "code": "sportzball_armor2_foam"
+      },
+      {
+        "name": "Lawnbowl Flag Zombie",
+        "code": "sportzball_flag"
+      },
+      {
+        "name": "Lawnbowl Flag Zombie (conehead)",
+        "code": "sportzball_flag_armor1"
+      },
+      {
+        "name": "Lawnbowl Flag Zombie (buckethead)",
+        "code": "sportzball_flag_armor2"
+      },
+      {
+        "name": "Lawnbowl Wizard",
+        "code": "sportzball_wizard"
+      },
+      {
+        "name": "Lawnbowl Balloon",
+        "code": "sportzball_balloon"
+      },
+      {
+        "name": "Lawnbowl Imp",
+        "code": "sportzball_imp"
+      },
+      {
+        "name": "Lawnbowl Gargantuar",
+        "code": "sportzball_gargantuar"
+      }
+    ],
+    "Feastivus": [
+      {
+        "name": "Feastivus Zombie",
+        "code": "feastivus"
+      },
+      {
+        "name": "Feastivus Conehead",
+        "code": "feastivus_armor1"
+      },
+      {
+        "name": "Feastivus Buckethead",
+        "code": "feastivus_armor2"
+      },
+      {
+        "name": "Feastivus Flag Zombie",
+        "code": "feastivus_flag"
+      },
+      {
+        "name": "Feastivus Imp",
+        "code": "feastivus_imp"
+      },
+      {
+        "name": "Other Feastivus Imp",
+        "code": "holiday_imp"
+      },
+      {
+        "name": "Feastivus Pianist",
+        "code": "feastivus_piano"
+      },
+      {
+        "name": "Feastivus Swashbuckler",
+        "code": "feastivus_swashbuckler"
+      },
+      {
+        "name": "Feastivus Poncho",
+        "code": "feastivus_poncho"
+      },
+      {
+        "name": "Feastivus Camels (Segment)",
+        "code": "feastivus_camel_segment"
+      },
+      {
+        "name": "Feastivus Camels (3 parts)",
+        "code": "feastivus_camel_onehump"
+      },
+      {
+        "name": "Feastivus Camels (4 parts)",
+        "code": "feastivus_camel_twohump"
+      },
+      {
+        "name": "Feastivus Camels (6 parts)",
+        "code": "feastivus_camel_manyhump"
+      },
+      {
+        "name": "Feastivus Gargantuar",
+        "code": "feastivus_gargantuar"
+      }
+    ],
+    "Zomboss Mechs and KFW Bosses": [
+      {
+        "name": "Zombot Sphinx-inator",
+        "code": "zombossmech_egypt"
+      },
+      {
+        "name": "Zombot Plank Walker",
+        "code": "zombossmech_pirate"
+      },
+      {
+        "name": "Zombot War Wagon",
+        "code": "zombossmech_cowboy"
+      },
+      {
+        "name": "Gunpowder Devil",
+        "code": "kongfu_boss_explosive"
+      },
+      {
+        "name": "Blade-Wielding Hero",
+        "code": "kongfu_boss_blade"
+      },
+      {
+        "name": "Qigong Master",
+        "code": "kongfu_zomboss_chi"
+      },
+      {
+        "name": "Zombot Tomorrow-tron",
+        "code": "zombossmech_future"
+      },
+      {
+        "name": "Zombot Dark Dragon",
+        "code": "zombossmech_dark"
+      },
+      {
+        "name": "Zombot Sharktronic Sub",
+        "code": "zombossmech_beach"
+      },
+      {
+        "name": "Zombot Tuskmaster 10,000 BC",
+        "code": "zombossmech_iceage"
+      },
+      {
+        "name": "Zombot Aerostatic Gondola",
+        "code": "zombossmech_lostcity"
+      },
+      {
+        "name": "Zombot Vulture Fighter",
+        "code": "zombossmech_skycity"
+      },
+      {
+        "name": "Zombot Multi-stage Masher",
+        "code": "zombossmech_eighties"
+      },
+      {
+        "name": "Zombot Dinotronic Mechasaur",
+        "code": "zombossmech_dino"
+      }
+    ],
+    "Expansion Zomboss Mechs": [
+      {
+        "name": "Zombot Sphinx-inator 2.0",
+        "code": "zombossmech_egypt2"
+      },
+      {
+        "name": "Zombot Plank Walker 2.0",
+        "code": "zombossmech_pirate2"
+      },
+      {
+        "name": "Zombot War Wagon 2.0",
+        "code": "zombossmech_cowboy2"
+      },
+      {
+        "name": "Zombot Tomorrow-tron 2.0",
+        "code": "zombossmech_future2"
+      },
+      {
+        "name": "Zombot Dark Dragon 2.0",
+        "code": "zombossmech_dark2"
+      },
+      {
+        "name": "Zombot Sharktronic Sub 2.0",
+        "code": "zombossmech_beach2"
+      },
+      {
+        "name": "Zombot Tuskmaster 10,000 BC 2.0",
+        "code": "zombossmech_iceage2"
+      },
+      {
+        "name": "Zombot Aerostatic Gondola 2.0",
+        "code": "zombossmech_lostcity2"
+      },
+      {
+        "name": "Zombot Multi-Stage Masher 2.0",
+        "code": "zombossmech_eighties2"
+      },
+      {
+        "name": "Zombot Dinotronic Mechasaur 2.0",
+        "code": "zombossmech_dino2"
+      }
+    ],
+    "Modern Day Finale Zomboss Mechs": [
+      {
+        "name": "Zombot Sphinx-inator (Modern)",
+        "code": "zombossmech_modern_egypt"
+      },
+      {
+        "name": "Zombot Plank Walker (Modern)",
+        "code": "zombossmech_modern_pirate"
+      },
+      {
+        "name": "Zombot War Wagon (Modern)",
+        "code": "zombossmech_modern_cowboy"
+      },
+      {
+        "name": "Zombot Tomorrow-tron (Modern)",
+        "code": "zombossmech_modern_future"
+      },
+      {
+        "name": "Zombot Dark Dragon (Modern)",
+        "code": "zombossmech_modern_dark"
+      },
+      {
+        "name": "Zombot Sharktronic Sub (Modern)",
+        "code": "zombossmech_modern_beach"
+      },
+      {
+        "name": "Zombot Tuskmaster 10,000 BC (Modern)",
+        "code": "zombossmech_modern_iceage"
+      },
+      {
+        "name": "Zombot Aerostatic Gondola (Modern)",
+        "code": "zombossmech_modern_lostcity"
+      },
+      {
+        "name": "Zombot Multi-stage Masher (Modern)",
+        "code": "zombossmech_modern_eighties"
+      },
+      {
+        "name": "Zombot Dinotronic Mechasaur (Modern)",
+        "code": "zombossmech_modern_dino"
+      }
+    ]
+  },
+  "Plants": {
+    "Ancient Egypt": [
+      {
+        "name": "Cabbage-pult",
+        "code": "cabbagepult"
+      },
+      {
+        "name": "Bloomerang",
+        "code": "bloomerang"
+      },
+      {
+        "name": "Iceburg Lettuce",
+        "code": "iceburg"
+      },
+      {
+        "name": "Grave Buster",
+        "code": "gravebuster"
+      },
+      {
+        "name": "Bonk Choy",
+        "code": "bonkchoy"
+      },
+      {
+        "name": "Repeater",
+        "code": "repeater"
+      },
+      {
+        "name": "Twin Sunflower",
+        "code": "twinsunflower"
+      }
+    ],
+    "Pirate Seas": [
+      {
+        "name": "Kernel-pult",
+        "code": "kernelpult"
+      },
+      {
+        "name": "Snapdragon",
+        "code": "snapdragon"
+      },
+      {
+        "name": "Spikeweed",
+        "code": "spikeweed"
+      },
+      {
+        "name": "Coconut Cannon",
+        "code": "coconutcannon"
+      },
+      {
+        "name": "Spring Bean",
+        "code": "springbean"
+      },
+      {
+        "name": "Threepeater",
+        "code": "threepeater"
+      },
+      {
+        "name": "Spikerock",
+        "code": "spikerock"
+      },
+      {
+        "name": "Cherry Bomb",
+        "code": "cherry_bomb"
+      }
+    ],
+    "Wild West": [
+      {
+        "name": "Split Pea",
+        "code": "splitpea"
+      },
+      {
+        "name": "Chili Bean",
+        "code": "chilibean"
+      },
+      {
+        "name": "Lightning Reed",
+        "code": "lightningreed"
+      },
+      {
+        "name": "Tall-nut",
+        "code": "tallnut"
+      },
+      {
+        "name": "Pea Pod",
+        "code": "peapod"
+      },
+      {
+        "name": "Melon-pult",
+        "code": "melonpult"
+      },
+      {
+        "name": "Winter Melon",
+        "code": "wintermelon"
+      }
+    ],
+    "Kongfu World": [
+      {
+        "name": "Fire Gourd",
+        "code": "firegourd"
+      },
+      {
+        "name": "Snow Pea",
+        "code": "snowpea"
+      },
+      {
+        "name": "Resitant Radish",
+        "code": "turnip"
+      },
+      {
+        "name": "Heavenly Peach",
+        "code": "peach"
+      },
+      {
+        "name": "Bamburrow",
+        "code": "bamburrow"
+      },
+      {
+        "name": "Cantaloupe-pult",
+        "code": "cantaloupe"
+      },
+      {
+        "name": "Solar Sage",
+        "code": "solarsage"
+      },
+      {
+        "name": "Lychee",
+        "code": "lychee"
+      }
+    ],
+    "Far Future": [
+      {
+        "name": "Laser Bean",
+        "code": "laser_bean"
+      },
+      {
+        "name": "Blover",
+        "code": "blover"
+      },
+      {
+        "name": "Citron",
+        "code": "citron"
+      },
+      {
+        "name": "E.M. Peach",
+        "code": "empea"
+      },
+      {
+        "name": "Infi-nut",
+        "code": "holonut"
+      },
+      {
+        "name": "Magnifying Grass",
+        "code": "magnifyinggrass"
+      },
+      {
+        "name": "Tile Turnip ε",
+        "code": "powerplant_epsilon"
+      },
+      {
+        "name": "Tile Turnip α",
+        "code": "powerplant_alpha"
+      },
+      {
+        "name": "Tile Turnip β",
+        "code": "powerplant_beta"
+      },
+      {
+        "name": "Tile Turnip γ",
+        "code": "powerplant_gamma"
+      },
+      {
+        "name": "Tile Turnip δ",
+        "code": "powerplant_delta"
+      }
+    ],
+    "Dark Ages": [
+      {
+        "name": "Sun-shroom",
+        "code": "sunshroom"
+      },
+      {
+        "name": "Puff-shroom",
+        "code": "puffshroom"
+      },
+      {
+        "name": "Fume-shroom",
+        "code": "fumeshroom"
+      },
+      {
+        "name": "Sun Bean",
+        "code": "sunbean"
+      },
+      {
+        "name": "Magnet-shroom",
+        "code": "magnetshroom"
+      },
+      {
+        "name": "Scaredy Shroom",
+        "code": "scaredyshroom"
+      }
+    ],
+    "Big Wave Beach": [
+      {
+        "name": "Lily Pad",
+        "code": "lilypad"
+      },
+      {
+        "name": "Tangle Kelp",
+        "code": "tanglekelp"
+      },
+      {
+        "name": "Bowling Bulb",
+        "code": "bowlingbulb"
+      },
+      {
+        "name": "Guacodile",
+        "code": "guacodile"
+      },
+      {
+        "name": "Banana Launcher",
+        "code": "banana"
+      }
+    ],
+    "Frostbite Caves": [
+      {
+        "name": "Hot Potato",
+        "code": "hotpotato"
+      },
+      {
+        "name": "Pepper-pult",
+        "code": "pepperpult"
+      },
+      {
+        "name": "Chard Guard",
+        "code": "chardguard"
+      },
+      {
+        "name": "Stunion",
+        "code": "stunion"
+      },
+      {
+        "name": "Rotobaga",
+        "code": "xshot"
+      }
+    ],
+    "Lost City": [
+      {
+        "name": "Red Stinger",
+        "code": "redstinger"
+      },
+      {
+        "name": "A.K.E.E.",
+        "code": "akee"
+      },
+      {
+        "name": "Endurian",
+        "code": "endurian"
+      },
+      {
+        "name": "Stallia",
+        "code": "stallia"
+      },
+      {
+        "name": "Gold Leaf",
+        "code": "goldleaf"
+      }
+    ],
+    "Sky City": [
+      {
+        "name": "Skyshooter",
+        "code": "skyshooter"
+      },
+      {
+        "name": "Moon Bean",
+        "code": "moonbean"
+      },
+      {
+        "name": "Cycloquat",
+        "code": "doublesamara"
+      },
+      {
+        "name": "Ampthurium",
+        "code": "anthurium"
+      },
+      {
+        "name": "Aceparagus",
+        "code": "asparagus"
+      },
+      {
+        "name": "Saucer Squash",
+        "code": "saucer"
+      },
+      {
+        "name": "Pod Pilots",
+        "code": "horsebean"
+      },
+      {
+        "name": "Lantern Cherry",
+        "code": "groundcherry"
+      },
+      {
+        "name": "Spinapple",
+        "code": "pineapple"
+      }
+    ],
+    "Neon Mixtape Tour": [
+      {
+        "name": "Phat Beet",
+        "code": "phatbeet"
+      },
+      {
+        "name": "Celery Stalker",
+        "code": "celerystalker"
+      },
+      {
+        "name": "Thyme Warp",
+        "code": "thymewarp"
+      },
+      {
+        "name": "Garlic",
+        "code": "garlic"
+      },
+      {
+        "name": "Spore-shroom",
+        "code": "sporeshroom"
+      },
+      {
+        "name": "Intensive Carrot",
+        "code": "intensivecarrot"
+      }
+    ],
+    "Jurassic Marsh": [
+      {
+        "name": "Primal Peashooter",
+        "code": "primalpeashooter"
+      },
+      {
+        "name": "Primal Wall-nut",
+        "code": "primalwallnut"
+      },
+      {
+        "name": "Perfume-shroom",
+        "code": "perfumeshroom"
+      },
+      {
+        "name": "Primal Sunflower",
+        "code": "primalsunflower"
+      },
+      {
+        "name": "Primal Potato Mine",
+        "code": "primalpotatomine"
+      }
+    ],
+    "Modern Day/Tutorial": [
+      {
+        "name": "Peashooter",
+        "code": "peashooter"
+      },
+      {
+        "name": "Sunflower",
+        "code": "sunflower"
+      },
+      {
+        "name": "Wall-nut",
+        "code": "wallnut"
+      },
+      {
+        "name": "Potato Mine",
+        "code": "potatomine"
+      },
+      {
+        "name": "Marigold",
+        "code": "marigold"
+      },
+      {
+        "name": "Red Marigold",
+        "code": "marigold_red"
+      },
+      {
+        "name": "Orange Marigold",
+        "code": "marigold_orange"
+      },
+      {
+        "name": "Yellow Marigold",
+        "code": "marigold_yellow"
+      },
+      {
+        "name": "Green Marigold",
+        "code": "marigold_green"
+      },
+      {
+        "name": "Blue Marigold",
+        "code": "marigold_blue"
+      },
+      {
+        "name": "Pink Marigold",
+        "code": "marigold_pink"
+      },
+      {
+        "name": "Purple Marigold",
+        "code": "marigold_purple"
+      },
+      {
+        "name": "Moonflower",
+        "code": "moonflower"
+      },
+      {
+        "name": "Nightshade",
+        "code": "nightshade"
+      },
+      {
+        "name": "Shadow-shroom",
+        "code": "shadowshroom"
+      },
+      {
+        "name": "Dusk Lobber",
+        "code": "dusklobber"
+      },
+      {
+        "name": "Grimrose",
+        "code": "grimrose"
+      }
+    ],
+    "Premium Plants Set": [
+      {
+        "name": "Power Lily",
+        "code": "powerlily"
+      },
+      {
+        "name": "Jalapeno",
+        "code": "jalapeno"
+      },
+      {
+        "name": "Imitater",
+        "code": "imitater"
+      },
+      {
+        "name": "Starfruit",
+        "code": "starfruit"
+      },
+      {
+        "name": "Hypno-shroom",
+        "code": "hypnoshroom"
+      },
+      {
+        "name": "Pea-nut",
+        "code": "peanut"
+      },
+      {
+        "name": "Chomper",
+        "code": "chomper"
+      },
+      {
+        "name": "Homing Thistle",
+        "code": "homingthistle"
+      },
+      {
+        "name": "Hurrikale",
+        "code": "hurrikale"
+      },
+      {
+        "name": "Fire Peashooter",
+        "code": "firepeashooter"
+      },
+      {
+        "name": "Lava Guava",
+        "code": "lavaguava"
+      },
+      {
+        "name": "Toadstool",
+        "code": "toadstool"
+      },
+      {
+        "name": "Strawburst",
+        "code": "strawburst"
+      },
+      {
+        "name": "Cactus",
+        "code": "cactus"
+      },
+      {
+        "name": "Electric Blueberry",
+        "code": "electricblueberry"
+      },
+      {
+        "name": "Jack O' Lantern",
+        "code": "jackolantern"
+      },
+      {
+        "name": "Grapeshot",
+        "code": "grapeshot"
+      },
+      {
+        "name": "Cold Snapdragon",
+        "code": "coldsnapdragon"
+      },
+      {
+        "name": "Shrinking Violet",
+        "code": "shrinkingviolet"
+      },
+      {
+        "name": "Escape Root",
+        "code": "escaperoot"
+      },
+      {
+        "name": "Wasabi Whip",
+        "code": "wasabiwhip"
+      },
+      {
+        "name": "Explode-O-nut",
+        "code": "explodeonut"
+      },
+      {
+        "name": "Kiwibeast",
+        "code": "kiwibeast"
+      },
+      {
+        "name": "Apple Mortar",
+        "code": "applemortar"
+      },
+      {
+        "name": "Bombegranate",
+        "code": "bombegranate"
+      },
+      {
+        "name": "Witch Hazel",
+        "code": "witchhazel"
+      },
+      {
+        "name": "Missile Toe",
+        "code": "missiletoe"
+      },
+      {
+        "name": "Caulipower",
+        "code": "caulipower"
+      },
+      {
+        "name": "Electric Peashooter",
+        "code": "electricpeashooter"
+      },
+      {
+        "name": "Aloe",
+        "code": "aloe"
+      },
+      {
+        "name": "Holly Barrier",
+        "code": "hollyknight"
+      },
+      {
+        "name": "Snowdrop",
+        "code": "snowdrop"
+      },
+      {
+        "name": "Iceweed",
+        "code": "iceweed"
+      },
+      {
+        "name": "Bamboozle",
+        "code": "bamboozle"
+      }
+    ],
+    "Bonus Level Plants Set": [
+      {
+        "name": "Squash",
+        "code": "squash"
+      },
+      {
+        "name": "Dandelion",
+        "code": "dandelion"
+      },
+      {
+        "name": "Pea Vine",
+        "code": "pvine"
+      },
+      {
+        "name": "Buttercup",
+        "code": "buttercup"
+      },
+      {
+        "name": "Sap-fling",
+        "code": "sapfling"
+      },
+      {
+        "name": "Electric Currant",
+        "code": "electriccurrant"
+      },
+      {
+        "name": "Shooting Starfruit",
+        "code": "shootingstarfruit"
+      },
+      {
+        "name": "Solar Tomato",
+        "code": "solartomato"
+      },
+      {
+        "name": "Plantern",
+        "code": "plantern"
+      },
+      {
+        "name": "Vamporcini",
+        "code": "vamporcini"
+      },
+      {
+        "name": "Ice Shroom",
+        "code": "glaciershroom"
+      },
+      {
+        "name": "Doom Shroom",
+        "code": "doomshroom"
+      },
+      {
+        "name": "Ghost Pepper",
+        "code": "ghostpepper"
+      },
+      {
+        "name": "Parsnip",
+        "code": "parsnip"
+      },
+      {
+        "name": "Hot Date",
+        "code": "hotdate"
+      },
+      {
+        "name": "Gatling Pea",
+        "code": "gatling"
+      },
+      {
+        "name": "Mega Gatling Pea",
+        "code": "megagatling"
+      },
+      {
+        "name": "Torchwood",
+        "code": "torchwood"
+      },
+      {
+        "name": "FloawerPot",
+        "code": "floawerPot"
+      },
+      {
+        "name": "Strawburst",
+        "code": "strawburst"
+      },
+      {
+        "name": "Blooming Heart",
+        "code": "bloominghearts"
+      },
+      {
+        "name": "Gold Bloom",
+        "code": "goldbloom"
+      },
+      {
+        "name": "Gloom-Shroom",
+        "code": "gloomshroom"
+      },
+      {
+        "name": "Umbrella Leaf",
+        "code": "umbrellaleaf"
+      }
+    ],
+    "Power Mints": [
+      {
+        "name": "Fila-mint",
+        "code": "filamint"
+      },
+      {
+        "name": "Reinforce-mint",
+        "code": "reinforcemint"
+      },
+      {
+        "name": "Bombard-mint",
+        "code": "bombardmint"
+      },
+      {
+        "name": "Arma-mint",
+        "code": "armamint"
+      },
+      {
+        "name": "Contain-mint",
+        "code": "containmint"
+      },
+      {
+        "name": "Enchant-mint",
+        "code": "enchantmint"
+      },
+      {
+        "name": "Spear-mint",
+        "code": "spearmint"
+      },
+      {
+        "name": "Pepper-mint",
+        "code": "peppermint"
+      },
+      {
+        "name": "Winter-mint",
+        "code": "wintermint"
+      },
+      {
+        "name": "Conceal-mint",
+        "code": "concealmint"
+      },
+      {
+        "name": "Enforce-mint",
+        "code": "enforcemint"
+      },
+      {
+        "name": "Enlighten-mint",
+        "code": "enlightenmint"
+      },
+      {
+        "name": "Ail-mint",
+        "code": "ailmint"
+      },
+      {
+        "name": "Appease-mint",
+        "code": "appeasemint"
+      }
+    ],
+    "Seediums Set": [
+      {
+        "name": "Shadow Peashooter",
+        "code": "shadowpeashooter"
+      },
+      {
+        "name": "Goo Peashooter",
+        "code": "poisonpeashooter"
+      },
+      {
+        "name": "Sling Pea",
+        "code": "slingpea"
+      },
+      {
+        "name": "Snap Pea",
+        "code": "snappea"
+      },
+      {
+        "name": "Zoybean Pod",
+        "code": "zoybeanpod"
+      },
+      {
+        "name": "Dazey Chain",
+        "code": "dazeychain"
+      },
+      {
+        "name": "Electrici-tea",
+        "code": "electricitea"
+      },
+      {
+        "name": "Blastberry Vine",
+        "code": "blastberry"
+      },
+      {
+        "name": "Imp Pear",
+        "code": "imppear"
+      },
+      {
+        "name": "Pokra",
+        "code": "pokra"
+      },
+      {
+        "name": "Pyre Vine",
+        "code": "pyrevine"
+      },
+      {
+        "name": "Pumpkin",
+        "code": "pumpkin"
+      },
+      {
+        "name": "Ice Bloom",
+        "code": "icebloom"
+      },
+      {
+        "name": "Ultomato",
+        "code": "ultomato"
+      },
+      {
+        "name": "Dartichoke",
+        "code": "dartichoke"
+      },
+      {
+        "name": "Shine Vine",
+        "code": "shinevine"
+      },
+      {
+        "name": "Gumnut",
+        "code": "gumnut"
+      },
+      {
+        "name": "Tumbleweed",
+        "code": "tumbleweed"
+      },
+      {
+        "name": "Gloom Vine",
+        "code": "gloomvine"
+      },
+      {
+        "name": "Meteor Flower",
+        "code": "meteorflower"
+      },
+      {
+        "name": "Dragon Bruit",
+        "code": "dragonbruit"
+      },
+      {
+        "name": "Baby Dragon Bruit",
+        "code": "dragonbabybruit"
+      },
+      {
+        "name": "Cran Jelly",
+        "code": "cranjelly"
+      }
+    ]
+  },
+  "Tool Packets": [
+    {
+      "name": "Power Tile (Alpha)",
+      "code": "tool_powertile_alpha"
+    },
+    {
+      "name": "Power Tile (Beta)",
+      "code": "tool_powertile_beta"
+    },
+    {
+      "name": "Power Tile (Gamma)",
+      "code": "tool_powertile_gamma"
+    },
+    {
+      "name": "Power Tile (Delta)",
+      "code": "tool_powertile_delta"
+    },
+    {
+      "name": "Power Tile (Epsilon)",
+      "code": "tool_powertile_epsilon"
+    },
+    {
+      "name": "Small Bulb",
+      "code": "tool_projectile_bowlingbulb1"
+    },
+    {
+      "name": "Medium Bulb",
+      "code": "tool_projectile_bowlingbulb2"
+    },
+    {
+      "name": "Large Bulb",
+      "code": "tool_projectile_bowlingbulb3"
+    },
+    {
+      "name": "Exploding Bulb",
+      "code": "tool_projectile_bowlingbulb_explode"
+    },
+    {
+      "name": "Iceberg Bowling",
+      "code": "tool_projectile_bowlingbulb_iceburg"
+    },
+    {
+      "name": "Bowling Wall-nut",
+      "code": "tool_projectile_bowling_wallnut"
+    },
+    {
+      "name": "Bowling Explode-O-nut",
+      "code": "tool_projectile_bowling_explodeonut"
+    },
+    {
+      "name": "Bowling Infi-nut",
+      "code": "tool_projectile_bowling_holonut"
+    },
+    {
+      "name": "Bowling Primal Wall-nut",
+      "code": "tool_projectile_bowling_primalwallnut"
+    },
+    {
+      "name": "Bowling Tall-nut",
+      "code": "tool_projectile_bowling_tallnut"
+    },
+    {
+      "name": "Gigantic Bulb",
+      "code": "tool_projectile_bowlingbulb_mega"
+    },
+    {
+      "name": "Bamboobusket",
+      "code": "bamboobusket"
+    }
+  ],
+  "Jurassic Marsh Dinos": [
+    {
+      "name": "Raptor",
+      "code": "raptor"
+    },
+    {
+      "name": "Stegosaurus",
+      "code": "stego"
+    },
+    {
+      "name": "Pterodactyl",
+      "code": "ptero"
+    },
+    {
+      "name": "Rex",
+      "code": "tyranno"
+    },
+    {
+      "name": "Ankylosaurus",
+      "code": "ankylo"
+    }
+  ],
+  "Conditions": {},
+  "Stages": [
+    {
+      "name": "Tutorial",
+      "code": "TutorialStage"
+    },
+    {
+      "name": "Pinata Party",
+      "code": "FrontLawnStage"
+    },
+    {
+      "name": "Ancient Egypt",
+      "code": "EgyptStage"
+    },
+    {
+      "name": "Ancient Egypt Night",
+      "code": "EgyptNightStage"
+    },
+    {
+      "name": "Pirate Seas",
+      "code": "PirateStage"
+    },
+    {
+      "name": "Wild West",
+      "code": "WestStage"
+    },
+    {
+      "name": "Kongfu World",
+      "code": "KongfuStage"
+    },
+    {
+      "name": "Kongfu World (Boss)",
+      "code": "KongfuVeteranStage"
+    },
+    {
+      "name": "Far Future",
+      "code": "FutureStage"
+    },
+    {
+      "name": "Dark Ages (Front lawn)",
+      "code": "DarkTutorialStage"
+    },
+    {
+      "name": "Dark Ages",
+      "code": "DarkStage"
+    },
+    {
+      "name": "Big Wave Beach (Front lawn)",
+      "code": "BeachTutorialStage"
+    },
+    {
+      "name": "Big Wave Beach",
+      "code": "BeachStage"
+    },
+    {
+      "name": "Frostbite Caves (Front lawn)",
+      "code": "IceageTutorialStage"
+    },
+    {
+      "name": "Frostbite Caves",
+      "code": "IceageStage"
+    },
+    {
+      "name": "Frostbite Caves Resurgence",
+      "code": "IceageVeteranStage"
+    },
+    {
+      "name": "Lost City (Front lawn)",
+      "code": "LostCityTutorialStage"
+    },
+    {
+      "name": "Lost City",
+      "code": "LostCityStage"
+    },
+    {
+      "name": "Lost City Night",
+      "code": "LostCityNightStage"
+    },
+    {
+      "name": "Sky City",
+      "code": "SkyStage"
+    },
+    {
+      "name": "Neon Mixtape Tour (Front lawn)",
+      "code": "EightiesTutorialStage"
+    },
+    {
+      "name": "Neon Mixtape Tour",
+      "code": "EightiesStage"
+    },
+    {
+      "name": "Jurassic Marsh (Front lawn)",
+      "code": "DinoTutorialStage"
+    },
+    {
+      "name": "Jurassic Marsh",
+      "code": "DinoStage"
+    },
+    {
+      "name": "Modern Day",
+      "code": "ModernStage"
+    },
+    {
+      "name": "Lunar Zoo Year",
+      "code": "LunarStage"
+    },
+    {
+      "name": "Luck O' the Zombie",
+      "code": "PaddysStage"
+    },
+    {
+      "name": "Summer Nights",
+      "code": "SummerNightsStage"
+    },
+    {
+      "name": "Harvest Festival",
+      "code": "FarmStage"
+    },
+    {
+      "name": "Lawn of Doom",
+      "code": "HalloweenStage"
+    },
+    {
+      "name": "Heroes",
+      "code": "HeroesStage"
+    },
+    {
+      "name": "Fall/Foodfight",
+      "code": "FallsStage"
+    },
+    {
+      "name": "Backayrd Big Top",
+      "code": "CircusStage"
+    },
+    {
+      "name": "Arena",
+      "code": "ArenaStage"
+    },
+    {
+      "name": "Penny's Pursuit",
+      "code": "PersuitStage"
+    }
+  ],
+  "Neon Jams": {},
+  "Lawn Mowers": [
+    {
+      "name": "Front Lawn",
+      "code": "FrontLawnMowers"
+    },
+    {
+      "name": "Ancient Egypt",
+      "code": "EgyptMowers"
+    },
+    {
+      "name": "Pirate Seas",
+      "code": "PirateMowers"
+    },
+    {
+      "name": "Wild West",
+      "code": "WestMowers"
+    },
+    {
+      "name": "Kongfu World",
+      "code": "KongfuMowers"
+    },
+    {
+      "name": "Far Future",
+      "code": "FutureMowers"
+    },
+    {
+      "name": "Dark Ages",
+      "code": "DarkMowers"
+    },
+    {
+      "name": "Dark Ages (Arena)",
+      "code": "JoustDarkMowers"
+    },
+    {
+      "name": "Big Wave Beach",
+      "code": "BeachMowers"
+    },
+    {
+      "name": "Frostbite Caves",
+      "code": "IceageMowers"
+    },
+    {
+      "name": "Lost City",
+      "code": "LostCityMowers"
+    },
+    {
+      "name": "Neon Mixtape Tour",
+      "code": "EightiesMowers"
+    },
+    {
+      "name": "Neon Mixtape Tour (Zomboss Fight)",
+      "code": "EightiesZombossMowers"
+    },
+    {
+      "name": "Jurassic Marsh",
+      "code": "DinoMowers"
+    },
+    {
+      "name": "Modern Day",
+      "code": "ModernMowers"
+    }
+  ],
+  "Grid Items": [
+    {
+      "name": "Modern Gravestone",
+      "code": "gravestone_tutorial"
+    },
+    {
+      "name": "Egypt Gravestone",
+      "code": "gravestone_egypt"
+    },
+    {
+      "name": "Pirate Gravestone",
+      "code": "gravestone_pirate"
+    },
+    {
+      "name": "Cowboy Gravestone",
+      "code": "gravestone_cowboy"
+    },
+    {
+      "name": "Future Gravestone",
+      "code": "gravestone_future"
+    },
+    {
+      "name": "Dark Gravestone",
+      "code": "gravestone_dark"
+    },
+    {
+      "name": "Dark Gravestone (Sun)",
+      "code": "gravestoneSunOnDestruction"
+    },
+    {
+      "name": "Dark Gravestone (Plant Food)",
+      "code": "gravestonePlantfoodOnDestruction"
+    },
+    {
+      "name": "Frostbite Caves Gravestone",
+      "code": "gravestone_iceage"
+    },
+    {
+      "name": "Lost City Gravestone",
+      "code": "gravestone_lostcity"
+    },
+    {
+      "name": "Rails (Modern)",
+      "code": "rail_tutorial"
+    },
+    {
+      "name": "Rails (Egypt)",
+      "code": "rail_egypt"
+    },
+    {
+      "name": "Rails (Pirate)",
+      "code": "rail_pirate"
+    },
+    {
+      "name": "Rails (Cowboy)",
+      "code": "rail_cowboy"
+    },
+    {
+      "name": "Rails (Kongfu)",
+      "code": "rail_kongfu"
+    },
+    {
+      "name": "Rails (Future)",
+      "code": "rail_future"
+    },
+    {
+      "name": "Rails (Dark)",
+      "code": "rail_dark"
+    },
+    {
+      "name": "Rails (Sky)",
+      "code": "rail_sky"
+    },
+    {
+      "name": "Minecart (Modern)",
+      "code": "railcart_tutorial"
+    },
+    {
+      "name": "Minecart (Egypt)",
+      "code": "railcart_egypt"
+    },
+    {
+      "name": "Minecart (Pirate)",
+      "code": "railcart_pirate"
+    },
+    {
+      "name": "Minecart (Cowboy)",
+      "code": "railcart_cowboy"
+    },
+    {
+      "name": "Minecart (Kongfu)",
+      "code": "railcart_kongfu"
+    },
+    {
+      "name": "Minecart (Future)",
+      "code": "railcart_future"
+    },
+    {
+      "name": "Minecart (Dark)",
+      "code": "railcart_dark"
+    },
+    {
+      "name": "Minecart (Sky)",
+      "code": "railcart_sky"
+    },
+    {
+      "name": "Plank",
+      "code": "plank"
+    },
+    {
+      "name": "Torch Stand",
+      "code": "kongfu_rack_torch"
+    },
+    {
+      "name": "Flag Stand",
+      "code": "kongfu_rack_flag"
+    },
+    {
+      "name": "Hammer Stand",
+      "code": "kongfu_rack_hammer"
+    },
+    {
+      "name": "Admiral Helmet Stand",
+      "code": "kongfu_rack_helmet"
+    },
+    {
+      "name": "Bomb Stand",
+      "code": "kongfu_rack_bomb"
+    },
+    {
+      "name": "Sword Stand",
+      "code": "kongfu_rack_blade"
+    },
+    {
+      "name": "Nunchaku Stand",
+      "code": "kongfu_rack_nunchaku"
+    },
+    {
+      "name": "Taichi Tile",
+      "code": "taichitile"
+    },
+    {
+      "name": "Buttercup Butter",
+      "code": "butter"
+    },
+    {
+      "name": "Endangered Tile",
+      "code": "protect_plant"
+    },
+    {
+      "name": "Infi-nut Shield",
+      "code": "holoshield"
+    },
+    {
+      "name": "Moonflower Shield",
+      "code": "moonflowershield"
+    },
+    {
+      "name": "Shield Zombie Shield",
+      "code": "protectorshield"
+    },
+    {
+      "name": "Shield Zombie Shield (Segment)",
+      "code": "protectorshieldsegment"
+    },
+    {
+      "name": "Gold Tile",
+      "code": "goldtile"
+    },
+    {
+      "name": "Power Tile (Alpha)",
+      "code": "powertile_alpha"
+    },
+    {
+      "name": "Power Tile (Beta)",
+      "code": "powertile_beta"
+    },
+    {
+      "name": "Power Tile (Gamma)",
+      "code": "powertile_gamma"
+    },
+    {
+      "name": "Power Tile (Delta)",
+      "code": "powertile_delta"
+    },
+    {
+      "name": "Power Tile (Epsilon)",
+      "code": "powertile_epsilon"
+    },
+    {
+      "name": "Potion (Speed)",
+      "code": "zombiepotion_speed"
+    },
+    {
+      "name": "Potion (Toughness)",
+      "code": "zombiepotion_toughness"
+    },
+    {
+      "name": "Potion (Invisibility)",
+      "code": "zombiepotion_invisibility"
+    },
+    {
+      "name": "Lily Pad",
+      "code": "lilypad"
+    },
+    {
+      "name": "Vase",
+      "code": "vase"
+    },
+    {
+      "name": "Eggbreaker Vase",
+      "code": "vase_egg"
+    },
+    {
+      "name": "Firebreaker Vase",
+      "code": "vase_firework"
+    },
+    {
+      "name": "Surfboard",
+      "code": "surfboard"
+    },
+    {
+      "name": "Veteran Surfboard",
+      "code": "surfboard_veteran"
+    },
+    {
+      "name": "Tent",
+      "code": "tent"
+    },
+    {
+      "name": "Imp Porter's Backpack",
+      "code": "backpack"
+    },
+    {
+      "name": "Octopus",
+      "code": "planttarget_squid"
+    },
+    {
+      "name": "Ice Block (Plant)",
+      "code": "planttarget_iceblock"
+    },
+    {
+      "name": "Ice Block (Zombie)",
+      "code": "zombietarget_iceblock"
+    },
+    {
+      "name": "Birthday Present",
+      "code": "zombietarget_birthday_present"
+    },
+    {
+      "name": "Frostbite Caves Slider (Up)",
+      "code": "slider_up"
+    },
+    {
+      "name": "Frostbite Caves Slider (Down)",
+      "code": "slider_down"
+    },
+    {
+      "name": "Modern Day Slider (Up)",
+      "code": "slider_up_modern"
+    },
+    {
+      "name": "Modern Day Slider (Down)",
+      "code": "slider_down_modern"
+    },
+    {
+      "name": "Healer Zombie's Staff",
+      "code": "roman_healer_staff"
+    },
+    {
+      "name": "Sap-fling's Sap",
+      "code": "sap"
+    },
+    {
+      "name": "Sap-fling's Sap (Plant Food)",
+      "code": "plantfoodsap"
+    },
+    {
+      "name": "Lava Guava Lava Tile",
+      "code": "lava"
+    },
+    {
+      "name": "Jack O' Lantern Wisp",
+      "code": "wisp"
+    },
+    {
+      "name": "Zombot Tuskmaster 10,000 BC's Ice Blocks",
+      "code": "zomboss_iceage_glacier_block"
+    },
+    {
+      "name": "Boulder Trap",
+      "code": "boulder_forward"
+    },
+    {
+      "name": "Fire Trap",
+      "code": "flame"
+    },
+    {
+      "name": "Beghouled Crater",
+      "code": "crater"
+    },
+    {
+      "name": "Timed Crater",
+      "code": "crater_timed"
+    },
+    {
+      "name": "Speaker",
+      "code": "speaker"
+    },
+    {
+      "name": "Speaker (Zomboss)",
+      "code": "speaker_zomboss"
+    },
+    {
+      "name": "Arcade Cabinet",
+      "code": "eightiesarcadecabinet"
+    },
+    {
+      "name": "Dusk Lobber's Plant Food Flower",
+      "code": "dusklobberflower"
+    },
+    {
+      "name": "Bombegranate's Seeds",
+      "code": "bombegranateseeds"
+    },
+    {
+      "name": "Ancient Rome Portal",
+      "code": "zombieportal_rome"
+    },
+    {
+      "name": "Modern Day Portal",
+      "code": "zombieportal_modern"
+    },
+    {
+      "name": "Neon Mixtape Tour Portal",
+      "code": "zombieportal_eighties"
+    },
+    {
+      "name": "Jurassic Marsh Portal",
+      "code": "zombieportal_dino"
+    },
+    {
+      "name": "Lost City Portal",
+      "code": "zombieportal_lostcity"
+    },
+    {
+      "name": "Frostbite Caves Portal",
+      "code": "zombieportal_iceage"
+    },
+    {
+      "name": "Big Wave Beach Portal",
+      "code": "zombieportal_beach"
+    },
+    {
+      "name": "Dark Ages Portal",
+      "code": "zombieportal_dark"
+    },
+    {
+      "name": "Far Future Portal",
+      "code": "zombieportal_future"
+    },
+    {
+      "name": "Far Future Portal (Time Twister)",
+      "code": "zombieportal_future_2"
+    },
+    {
+      "name": "Wild West Portal",
+      "code": "zombieportal_west"
+    },
+    {
+      "name": "Pirate Seas Portal",
+      "code": "zombieportal_pirate"
+    },
+    {
+      "name": "Ancient Egypt Portal",
+      "code": "zombieportal_egypt"
+    },
+    {
+      "name": "Other Ancient Egypt Portal",
+      "code": "zombieportal_egypt_2"
+    },
+    {
+      "name": "Ancient Egypt Portal (Endless)",
+      "code": "zombieportal_dangerroom_egypt"
+    },
+    {
+      "name": "Pirate Seas Portal (Endless)",
+      "code": "zombieportal_dangerroom_pirate"
+    },
+    {
+      "name": "Wild West Portal (Endless)",
+      "code": "zombieportal_dangerroom_west"
+    },
+    {
+      "name": "Far Future Portal (Endless)",
+      "code": "zombieportal_dangerroom_future"
+    },
+    {
+      "name": "Dark Ages Portal (Endless)",
+      "code": "zombieportal_dangerroom_dark"
+    },
+    {
+      "name": "Big Wave Beach Portal (Endless)",
+      "code": "zombieportal_dangerroom_beach"
+    },
+    {
+      "name": "Frostbite Caves Portal (Endless)",
+      "code": "zombieportal_dangerroom_iceage"
+    },
+    {
+      "name": "Lost City Portal (Endless)",
+      "code": "zombieportal_dangerroom_lostcity"
+    },
+    {
+      "name": "Neon Mixtape Tour Portal (Endless)",
+      "code": "zombieportal_dangerroom_eighties"
+    },
+    {
+      "name": "Jurassic Marsh Portal (Endless)",
+      "code": "zombieportal_dangerroom_dino"
+    },
+    {
+      "name": "Poison Tile (Poison Peashooter)",
+      "code": "poison_tile"
+    },
+    {
+      "name": "Liquid Tile",
+      "code": "tile_liquid"
+    },
+    {
+      "name": "Shallow Puddle",
+      "code": "shallowpuddle"
+    },
+    {
+      "name": "Deep Puddle",
+      "code": "potholepuddle"
+    },
+    {
+      "name": "Score 2x Tile",
+      "code": "score_2x_tile"
+    },
+    {
+      "name": "Score 3x Tile",
+      "code": "score_3x_tile"
+    },
+    {
+      "name": "Score 5x Tile",
+      "code": "score_5x_tile"
+    },
+    {
+      "name": "Test Damaging Grid Item",
+      "code": "test_damage_object"
+    },
+    {
+      "name": "Test Damaging Grid Item 2",
+      "code": "test_damage_object2"
+    },
+    {
+      "name": "Test Damaging Grid Item 3",
+      "code": "test_damage_object3"
+    },
+    {
+      "name": "Test Attacking Grid Item",
+      "code": "test_attacker"
+    },
+    {
+      "name": "Test Healing Grid Item",
+      "code": "test_healer"
+    },
+    {
+      "name": "Test Chilling Grid Item",
+      "code": "test_chiller"
+    },
+    {
+      "name": "Test PlantHeal/ZombieKill Grid Item",
+      "code": "test_plantheal_zombiekill"
+    },
+    {
+      "name": "Boost Tile",
+      "code": "boosttile"
+    },
+    {
+      "name": "Boost Tile x3",
+      "code": "boosttile3"
+    },
+    {
+      "name": "Boost Tile x5",
+      "code": "boosttile5"
+    },
+    {
+      "name": "Boost Tile x10",
+      "code": "boosttile10"
+    },
+    {
+      "name": "Boost Tile x1000",
+      "code": "boosttile1000"
+    }
+  ],
+  "Music Types": [
+    {
+      "name": "Ultimate Battle",
+      "code": "MiniGame_A"
+    },
+    {
+      "name": "Demonstration Minigame",
+      "code": "MiniGame_B"
+    }
+  ],
+  "Modules": [
+    {
+      "code": "ZombiesDeadWinCon"
+    },
+    {
+      "code": "DefaultZombieWinCondition"
+    },
+    {
+      "code": "StandardIntro"
+    },
+    {
+      "code": "DefaultSunDropper"
+    },
+    {
+      "code": "SlowSunDropper"
+    }
+  ],
+  "Objclasses": [
+    {
+      "code": "ProtectThePlantChallengeProperties"
+    },
+    {
+      "code": "SeedBankProperties"
+    },
+    {
+      "code": "WaveManagerProperties"
+    },
+    {
+      "code": "SpawnZombiesJitteredWaveActionProps"
+    },
+    {
+      "code": "WaveManagerModuleProperties"
+    },
+    {
+      "code": "GravestoneProperties"
+    },
+    {
+      "code": "ZombiePotionModuleProperties"
+    }
+  ]
+}
