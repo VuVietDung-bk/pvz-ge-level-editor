@@ -64,10 +64,8 @@ cd pvz-ge-level-editor
 
 ---
 
-### 3. Set up environment
+### 3. Install dependencies
 ```bash
-python -m venv venv
-venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
