@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt
 from data_loader import GameData
-
+import re
 
 class LevelDefinitionTab(QWidget):
     """Tab for customizing the LevelDefinition core object."""
@@ -15,7 +15,7 @@ class LevelDefinitionTab(QWidget):
         form = QFormLayout()
 
         # Editable fields
-        self.description = QLineEdit("A random quest for a random plant in a random world")
+        self.description = QLineEdit("Description")
         self.level_number = QLineEdit("1")
         self.name = QLineEdit("Unnamed Level")
         self.written_by = QLineEdit("unnamed")
@@ -50,9 +50,21 @@ class LevelDefinitionTab(QWidget):
             item.setCheckState(Qt.CheckState.Unchecked)
             self.modules_list.addItem(item)
 
-        # Auto-check first 4 modules
-        for i in range(min(4, self.modules_list.count())):
-            self.modules_list.item(i).setCheckState(Qt.CheckState.Checked)
+        # Auto-check specific default modules
+        default_auto_check = {
+            "ZombiesDeadWinCon",
+            "DefaultZombieWinCondition",
+            "StandardIntro",
+            "DefaultSunDropper",
+        }
+
+        for i in range(self.modules_list.count()):
+            item = self.modules_list.item(i)
+            # extract module code from text "RTID(X@LevelModules)"
+            text = item.text()
+            match = re.match(r"RTID\(([^@]+)@LevelModules\)", text)
+            if match and match.group(1) in default_auto_check:
+                item.setCheckState(Qt.CheckState.Checked)
 
         # Layout setup
         form.addRow("Description:", self.description)

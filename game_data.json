@@ -3398,6 +3398,168 @@
     },
     {
       "code": "SlowSunDropper"
+    },
+    {
+      "code": "SunBombs"
+    },
+    {
+      "code": "FreezingWindDesigner"
+    },
+    {
+      "code": "IceBlockDesigner2"
+    },
+    {
+      "code": "BeachLilypadPlacer"
+    },
+    {
+      "code": "DinosaurWeakDesigner"
+    },
+    {
+      "code": "JamDesigner"
+    },
+    {
+      "code": "PortalDesigner2"
+    },
+    {
+      "code": "EgyptWeakGravestoneGenerator"
+    },
+    {
+      "code": "EgyptWeakSandstormGenerator"
+    },
+    {
+      "code": "RaidingPartyGenerator"
+    },
+    {
+      "code": "SpiderRainDesigner"
+    },
+    {
+      "code": "DarkWaveWeakGravestoneEventGenerator"
+    },
+    {
+      "code": "DarkWaveWeakNecromancyEventGenerator2"
+    },
+    {
+      "code": "PowerTileDesigner2"
+    },
+    {
+      "code": "DangerRoomGoldTilePlacer"
+    },
+    {
+      "code": "DangerRoomParachuteRainDesigner"
+    },
+    {
+      "code": "BeachTideChanger"
+    },
+    {
+      "code": "EightiesZombossIntro"
+    },
+    {
+      "code": "AutoCollect"
+    },
+    {
+      "code": "DefaultSunDropperListenToLawn"
+    },
+    {
+      "code": "BeachTideChanger2"
+    },
+    {
+      "code": "BeghouledArcade"
+    },
+    {
+      "code": "BeghouledIntro"
+    },
+    {
+      "code": "DarkGravestoneGenerator"
+    },
+    {
+      "code": "DarkGravestoneGeneratorPotion"
+    },
+    {
+      "code": "DarkWaveGravestoneEventGenerator"
+    },
+    {
+      "code": "DarkWaveGravestoneEventGeneratorPotion"
+    },
+    {
+      "code": "DarkWaveNecromancyEventGenerator"
+    },
+    {
+      "code": "DarkWaveNecromancyEventGenerator2"
+    },
+    {
+      "code": "DinosaurDesigner"
+    },
+    {
+      "code": "DinosaurDesigner2"
+    },
+    {
+      "code": "DinosaurWeakDesigner"
+    },
+    {
+      "code": "EgyptBasicRandomizer"
+    },
+    {
+      "code": "EgyptGravestoneGenerator"
+    },
+    {
+      "code": "EgyptSandstormGenerator"
+    },
+    {
+      "code": "FastSunDropper"
+    },
+    {
+      "code": "IceageZombossIntro"
+    },
+    {
+      "code": "LastStand"
+    },
+    {
+      "code": "LevelGenMoldChallenge"
+    },
+    {
+      "code": "LevelOfTheDayIntro"
+    },
+    {
+      "code": "ModernLevelGenBasicTransRandomizer"
+    },
+    {
+      "code": "PortalDesigner"
+    },
+    {
+      "code": "PowerTileDesigner2"
+    },
+    {
+      "code": "RailcartDesigner"
+    },
+    {
+      "code": "Rain"
+    },
+    {
+      "code": "RandomImitater"
+    },
+    {
+      "code": "SeedPacketHalfTimeModule"
+    },
+    {
+      "code": "SliderTileDesigner"
+    },
+    {
+      "code": "TutorialPeashooterDeath"
+    },
+    {
+      "code": "VaseBreakerArcade"
+    },
+    {
+      "code": "VictoryOutroEndingInZombossNPC"
+    },
+    {
+      "code": "WidescreenFix"
+    },
+    {
+      "code": "X"
+    },
+    {
+      "code": "ZombossIntro"
     }
   ],
   "Objclasses": [

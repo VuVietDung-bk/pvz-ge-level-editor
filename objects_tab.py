@@ -1,15 +1,19 @@
 import json
 import re
+import copy
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QFormLayout, QHBoxLayout,
     QComboBox, QLineEdit, QPushButton, QLabel,
     QListWidget, QMessageBox, QDialog
 )
+from PyQt6.QtGui import QShortcut, QKeySequence
 from editors.base import ObjectEditorFactory, ReferenceLineEdit
 from data_loader import GameData
 
 class ObjectsTab(QWidget):
     """Tab for creating and managing 'objects' array in JSON."""
+    clipboard = None  # in-memory full-object clipboard
+
     def __init__(self, editor_reference):
         super().__init__()
         self.editor_reference = editor_reference
@@ -28,7 +32,7 @@ class ObjectsTab(QWidget):
         form_layout.addRow("Object Class:", self.objclass)
         form_layout.addRow("Aliases (comma separated):", self.aliases_input)
 
-        # NEW: auto-suggest alias when objectclass changes
+        # auto-suggest alias when objectclass changes
         self.objclass.currentTextChanged.connect(self.suggest_alias_for_current_class)
 
         # Buttons
@@ -38,13 +42,29 @@ class ObjectsTab(QWidget):
         btn_remove = QPushButton("🗑 Remove Selected")
         btn_remove.clicked.connect(self.remove_object)
 
+        btn_copy = QPushButton("📋 Copy")
+        btn_copy.clicked.connect(self.copy_object)
+
+        btn_paste = QPushButton("📥 Paste")
+        btn_paste.clicked.connect(self.paste_object)
+
         button_layout = QHBoxLayout()
         button_layout.addWidget(btn_add)
         button_layout.addWidget(btn_remove)
+        button_layout.addWidget(btn_copy)
+        button_layout.addWidget(btn_paste)
 
         # List of added objects
         self.objects_list = QListWidget()
         self.objects_list.itemDoubleClicked.connect(self.edit_object)
+
+        # Keyboard shortcuts (Ctrl+C / Ctrl+V)
+        self.sc_copy = QShortcut(QKeySequence.StandardKey.Copy, self)
+        self.sc_copy.activated.connect(self.copy_object)
+        self.sc_paste = QShortcut(QKeySequence.StandardKey.Paste, self)
+        self.sc_paste.activated.connect(self.paste_object)
+        self.sc_paste_raw = QShortcut(QKeySequence("Ctrl+Shift+V"), self)
+        self.sc_paste_raw.activated.connect(self.paste_object_raw)
 
         main_layout.addLayout(form_layout)
         main_layout.addLayout(button_layout)
@@ -53,7 +73,7 @@ class ObjectsTab(QWidget):
 
         self.setLayout(main_layout)
 
-    # ----------------------- NEW HELPERS -----------------------
+    # ----------------------- HELPERS -----------------------
     def existing_aliases(self):
         aliases = []
         for o in self.objects:
@@ -96,8 +116,6 @@ class ObjectsTab(QWidget):
             base = cls_name[: -len("properties")]
         else:
             base = cls_name
-        # Tidy: if base ends with 'Module' redundantly (e.g., WaveManagerModule), keep as-is
-        # Make sure not empty
         base = base or "Object"
         return self.unique_alias(base)
 
@@ -131,6 +149,8 @@ class ObjectsTab(QWidget):
             # Has a registered custom dialog
             if dlg.exec() == dlg.DialogCode.Accepted:
                 objdata = dlg.get_data()
+                if objdata is None:
+                    return  # validation failed inside dialog, do nothing
             else:
                 return
         else:
@@ -203,7 +223,10 @@ class ObjectsTab(QWidget):
         if dlg is not None:
             dlg.object_list_ref = self.objects
             if dlg.exec() == dlg.DialogCode.Accepted:
-                obj["objdata"] = dlg.get_data()
+                newdata = dlg.get_data()
+                if newdata is None:
+                    return
+                obj["objdata"] = newdata
         else:
             # fallback manual JSON edit
             text, ok = QInputDialog.getMultiLineText(
@@ -237,6 +260,67 @@ class ObjectsTab(QWidget):
             idx = self.objects_list.row(item)
             self.objects_list.takeItem(idx)
             self.objects.pop(idx)
+        for dlg in self.findChildren(QDialog):
+            for edit in dlg.findChildren(QLineEdit):
+                if isinstance(edit, ReferenceLineEdit):
+                    edit.object_list = self.objects
+                    edit.refresh_suggestions()
+
+    # ----------------------- COPY / PASTE -----------------------
+    def copy_object(self):
+        """Copy selected object (deep) into in-memory clipboard."""
+        idx = self.objects_list.currentRow()
+        if idx < 0:
+            QMessageBox.warning(self, "Copy Object", "Please select an object to copy.")
+            return
+        ObjectsTab.clipboard = copy.deepcopy(self.objects[idx])
+
+    def paste_object(self):
+        """Paste a copied object as a new one; aliases auto-uniq'ed."""
+        if not ObjectsTab.clipboard:
+            QMessageBox.warning(self, "Paste Object", "Clipboard is empty. Copy an object first.")
+            return
+
+        new_obj = copy.deepcopy(ObjectsTab.clipboard)
+
+        # Ensure aliases exist and are unique
+        aliases = new_obj.get("aliases", [])
+        if not aliases:
+            aliases = ["PastedObject"]
+        aliases = [self.unique_alias(a) for a in aliases]
+        new_obj["aliases"] = aliases
+
+        # Append & show
+        self.objects.append(new_obj)
+        alias_text = ", ".join(aliases)
+        self.objects_list.addItem(f"{new_obj['objclass']} (aliases: {alias_text})")
+
+        # Refresh reference completers
+        for dlg in self.findChildren(QDialog):
+            for edit in dlg.findChildren(QLineEdit):
+                if isinstance(edit, ReferenceLineEdit):
+                    edit.object_list = self.objects
+                    edit.refresh_suggestions()
+
+    def paste_object_raw(self):
+        """Paste a copied object as a new one, keeping original alias names."""
+        if not ObjectsTab.clipboard:
+            QMessageBox.warning(self, "Paste Object", "Clipboard is empty. Copy an object first.")
+            return
+
+        new_obj = copy.deepcopy(ObjectsTab.clipboard)
+        aliases = new_obj.get("aliases", [])
+
+        if not aliases:
+            QMessageBox.warning(self, "Invalid Object", "The copied object has no aliases.")
+            return
+
+        # Append object as-is
+        self.objects.append(new_obj)
+        alias_text = ", ".join(aliases)
+        self.objects_list.addItem(f"{new_obj['objclass']} (aliases: {alias_text})")
+
+        # Refresh all completers
         for dlg in self.findChildren(QDialog):
             for edit in dlg.findChildren(QLineEdit):
                 if isinstance(edit, ReferenceLineEdit):

@@ -1,27 +1,30 @@
+from math import ceil
 from PyQt6.QtWidgets import *
 from editors.base import ReferenceValidator, ReferenceLineEdit
+
 
 class WaveManagerDialog(QDialog):
     """Dialog for editing WaveManagerProperties."""
     def __init__(self, parent=None, existing_data=None):
         super().__init__(parent)
         self.setWindowTitle("Edit WaveManagerProperties")
-        self.resize(700, 500)
+        self.resize(750, 520)
 
         data = existing_data or {}
 
         layout = QVBoxLayout()
         form = QFormLayout()
 
+        # -------------------------------
         # Basic numeric fields
-        self.flag_wave_interval = QSpinBox(); self.flag_wave_interval.setRange(1, 100)
-        self.wave_count = QSpinBox(); self.wave_count.setRange(1, 200)
+        self.flag_wave_interval = QSpinBox(); self.flag_wave_interval.setRange(1, 999)
+        self.wave_count = QSpinBox(); self.wave_count.setRange(1, 999)
         self.flag_override = QLineEdit()
 
-        self.flag_wave_interval.setValue(data.get("FlagWaveInterval", 6))
-        self.wave_count.setValue(data.get("WaveCount", 18))
+        self.flag_wave_interval.setValue(data.get("FlagWaveInterval", 1))
+        self.wave_count.setValue(data.get("WaveCount", 1))
         self.flag_override.setText(
-            ", ".join(map(str, data.get("FlagWaveVeteranOverrideTypes", [0, 1, 1])))
+            ", ".join(map(str, data.get("FlagWaveVeteranOverrideTypes", [])))
         )
 
         form.addRow("Flag Wave Interval:", self.flag_wave_interval)
@@ -30,16 +33,18 @@ class WaveManagerDialog(QDialog):
 
         layout.addLayout(form)
 
+        # -------------------------------
         # Waves list
         layout.addWidget(QLabel("Waves (each wave is an array of RTIDs):"))
+
         self.waves_list = QListWidget()
-        for wave in data.get("Waves", []):
+        for idx, wave in enumerate(data.get("Waves", [])):
             joined = ", ".join(wave)
-            self.waves_list.addItem(joined)
+            self.waves_list.addItem(f"[Wave {idx+1}] {joined}")
 
         btn_add_wave = QPushButton("➕ Add Wave")
         btn_edit_wave = QPushButton("✏️ Edit Wave")
-        btn_remove_wave = QPushButton("🗑 Remove Wave")
+        btn_remove_wave = QPushButton("🗑 Remove Selected")
 
         btn_add_wave.clicked.connect(self.add_wave)
         btn_edit_wave.clicked.connect(self.edit_wave)
@@ -53,20 +58,58 @@ class WaveManagerDialog(QDialog):
         layout.addWidget(self.waves_list)
         layout.addLayout(wave_btns)
 
-        # OK/Cancel
+        # -------------------------------
+        # Events
+        self.wave_count.valueChanged.connect(self.sync_wave_count)
+
+        # OK / Cancel
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
 
         self.setLayout(layout)
+        self.sync_wave_count()  # ensure list is up to date
 
-    # ----------------------------
+    # =======================================================
+    # --- Logic to maintain Wave Count
+    # =======================================================
+    def sync_wave_count(self):
+        """Ensure the number of waves matches WaveCount."""
+        count = self.wave_count.value()
+        current = self.waves_list.count()
+
+        # Add missing waves
+        while current < count:
+            self.waves_list.addItem(f"[Wave {current+1}] ")
+            current += 1
+
+        # Remove extra waves
+        while current > count:
+            self.waves_list.takeItem(current - 1)
+            current -= 1
+
+        # Update numbering
+        for i in range(self.waves_list.count()):
+            item = self.waves_list.item(i)
+            text = item.text()
+            # remove existing [Wave x]
+            if "]" in text:
+                _, rest = text.split("]", 1)
+                item.setText(f"[Wave {i+1}]{rest}")
+            else:
+                item.setText(f"[Wave {i+1}] {text.strip()}")
+
+    # =======================================================
+    # --- Basic wave editing
+    # =======================================================
     def add_wave(self):
         dlg = WaveArrayDialog(self)
         if dlg.exec() == dlg.DialogCode.Accepted:
             arr = dlg.get_data()
-            self.waves_list.addItem(", ".join(arr))
+            idx = self.waves_list.count() + 1
+            self.waves_list.addItem(f"[Wave {idx}] {', '.join(arr)}")
+            self.wave_count.setValue(idx)
 
     def edit_wave(self):
         idx = self.waves_list.currentRow()
@@ -74,49 +117,78 @@ class WaveManagerDialog(QDialog):
             QMessageBox.warning(self, "Select Wave", "Please select a wave to edit.")
             return
 
-        current_wave = [
-            t.strip() for t in self.waves_list.item(idx).text().split(",") if t.strip()
-        ]
+        current_wave = self._extract_wave_items(self.waves_list.item(idx).text())
         dlg = WaveArrayDialog(self, current_wave)
         if dlg.exec() == dlg.DialogCode.Accepted:
             arr = dlg.get_data()
-            self.waves_list.item(idx).setText(", ".join(arr))
+            self.waves_list.item(idx).setText(f"[Wave {idx+1}] {', '.join(arr)}")
 
     def remove_wave(self):
-        for item in self.waves_list.selectedItems():
-            self.waves_list.takeItem(self.waves_list.row(item))
+        idx = self.waves_list.currentRow()
+        if idx >= 0:
+            self.waves_list.takeItem(idx)
+            self.sync_wave_count()
+            self.wave_count.setValue(self.waves_list.count())
 
+    # =======================================================
+    def _extract_wave_items(self, text: str):
+        """Extract RTIDs from '[Wave n] RTID(...)' lines."""
+        if "]" in text:
+            _, rest = text.split("]", 1)
+            parts = [s.strip() for s in rest.split(",") if s.strip()]
+            return parts
+        return []
+
+    # =======================================================
     def get_data(self):
-        """Return JSON-compatible data with reference validation."""
+        """Return JSON-compatible data with validation."""
         waves = []
         all_refs = []
         for i in range(self.waves_list.count()):
-            wave_arr = [s.strip() for s in self.waves_list.item(i).text().split(",") if s.strip()]
+            wave_arr = self._extract_wave_items(self.waves_list.item(i).text())
             waves.append(wave_arr)
             all_refs.extend(wave_arr)
 
-        # Kiểm tra missing references
+        # Reference validation
         parent = self.parent()
         object_list = getattr(self, "object_list_ref", None)
         if object_list:
             missing = ReferenceValidator.list_missing_references(all_refs, object_list)
             if missing:
-                QMessageBox.critical(self, "Invalid References",
-                    "The following referenced waves do not exist:\n- " + "\n- ".join(missing))
+                QMessageBox.critical(
+                    self, "Invalid References",
+                    "The following referenced waves do not exist:\n- " + "\n- ".join(missing)
+                )
                 raise Exception("Invalid references in Waves")
 
+        # Parse overrides
         overrides = []
         for val in self.flag_override.text().split(","):
             val = val.strip()
             if val.isdigit():
                 overrides.append(int(val))
 
-        return {
+        # Validate override length
+        required = ceil(self.wave_count.value() / self.flag_wave_interval.value())
+        if len(overrides) not in (0, required):
+            QMessageBox.warning(
+                self,
+                "Invalid FlagWaveVeteranOverrideTypes",
+                f"The number of override types must equal ceil(WaveCount / FlagWaveInterval).\n"
+                f"Expected: {required}, got: {len(overrides)}\n\n"
+                "Please correct the input before proceeding."
+            )
+            return None
+
+        data = {
             "FlagWaveInterval": self.flag_wave_interval.value(),
             "WaveCount": self.wave_count.value(),
-            "FlagWaveVeteranOverrideTypes": overrides,
             "Waves": waves
         }
+        if overrides:
+            data["FlagWaveVeteranOverrideTypes"] = overrides
+
+        return data
 
 
 class WaveArrayDialog(QDialog):
@@ -153,8 +225,7 @@ class WaveArrayDialog(QDialog):
         self.setLayout(layout)
 
     def add_rtid(self):
-        # Create temporary input with autocomplete
-        from PyQt6.QtWidgets import QDialog, QVBoxLayout, QDialogButtonBox, QLabel
+        """Create temporary input with autocomplete."""
         input_dialog = QDialog(self)
         input_dialog.setWindowTitle("Add RTID")
         input_dialog.resize(400, 100)
@@ -173,7 +244,6 @@ class WaveArrayDialog(QDialog):
         buttons.accepted.connect(input_dialog.accept)
         buttons.rejected.connect(input_dialog.reject)
 
-        # >>> Quan trọng: chạy dialog và lấy dữ liệu
         if input_dialog.exec() == QDialog.DialogCode.Accepted:
             text = ref_input.text().strip()
             if text:
