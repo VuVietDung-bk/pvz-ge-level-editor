@@ -65,11 +65,8 @@ class EditorWindow(QMainWindow):
             }
         }
 
-        # Collect aliases from all added objects
-        alias_modules = []
-        for obj in self.objects_tab.objects:
-            if "aliases" in obj:
-                alias_modules.extend(obj["aliases"])
+        # Collect aliases from all root objects
+        alias_modules = self.objects_tab.get_root_aliases()
 
         # Build LevelDefinition object
         level_def = self.leveldef_tab.build_level_definition(alias_modules)

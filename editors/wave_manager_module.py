@@ -16,11 +16,11 @@ class WaveManagerModuleDialog(QDialog):
 
         # WaveManagerProps reference
         self.wave_manager_ref = ReferenceLineEdit(
-            object_list=getattr(parent, "object_list_ref", []),
+            object_list=getattr(parent, "objects", []),
             allowed_classes=["WaveManagerProperties"]
         )
         self.wave_manager_ref.setText(
-            self.existing_data.get("WaveManagerProps", "RTID(WaveManagerProps@CurrentLevel)")
+            self.existing_data.get("WaveManagerProps", "")
         )
         form_layout.addRow("WaveManagerProps Reference:", self.wave_manager_ref)
 
@@ -48,6 +48,7 @@ class WaveManagerModuleDialog(QDialog):
             self.dynamic_sets = self.existing_data["DynamicZombies"]
 
         self.refresh_list()
+        self.object_list_ref = getattr(parent, "objects", [])
 
     def _default_dynamic_zombie(self):
         return {"PointIncrementPerWave": 0, "StartingPoints": 0, "StartingWave": 0, "ZombiePool": []}

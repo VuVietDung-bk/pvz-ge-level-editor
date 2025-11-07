@@ -72,6 +72,7 @@ class ObjectsTab(QWidget):
         main_layout.addWidget(self.objects_list)
 
         self.setLayout(main_layout)
+        self.alias_tree = {}  # key = parent alias, value = list of child aliases
 
     # ----------------------- HELPERS -----------------------
     def existing_aliases(self):
@@ -175,6 +176,24 @@ class ObjectsTab(QWidget):
             obj["aliases"] = [a.strip() for a in aliases_text.split(",") if a.strip()]
 
         self.objects.append(obj)
+
+        child_aliases = []
+        def extract_aliases(node):
+            if isinstance(node, dict):
+                for v in node.values():
+                    extract_aliases(v)
+            elif isinstance(node, list):
+                for v in node:
+                    extract_aliases(v)
+            elif isinstance(node, str) and "@CurrentLevel" in node:
+                name = node.replace("RTID(", "").replace("@CurrentLevel)", "")
+                child_aliases.append(name)
+
+        extract_aliases(obj["objdata"])
+
+        for parent_alias in obj.get("aliases", []):
+            self.alias_tree[parent_alias] = list(set(child_aliases))
+
         self.objects_list.addItem(f"{objclass} (aliases: {aliases_text or 'None'})")
         self.aliases_input.clear()
 
@@ -336,3 +355,34 @@ class ObjectsTab(QWidget):
             self.objects.append(obj)
             alias_text = ", ".join(obj.get("aliases", []))
             self.objects_list.addItem(f"{obj['objclass']} (aliases: {alias_text or 'None'})")
+
+        # rebuild alias tree after loading
+        self.alias_tree = {}
+        for obj in self.objects:
+            child_aliases = []
+            def extract_aliases(node):
+                if isinstance(node, dict):
+                    for v in node.values():
+                        extract_aliases(v)
+                elif isinstance(node, list):
+                    for v in node:
+                        extract_aliases(v)
+                elif isinstance(node, str) and "@CurrentLevel" in node:
+                    name = node.replace("RTID(", "").replace("@CurrentLevel)", "")
+                    child_aliases.append(name)
+            extract_aliases(obj["objdata"])
+            for parent_alias in obj.get("aliases", []):
+                self.alias_tree[parent_alias] = list(set(child_aliases))
+
+    def get_root_aliases(self):
+        """Return only aliases that are not referenced as children anywhere."""
+        all_children = set()
+        for childs in self.alias_tree.values():
+            all_children.update(childs)
+
+        roots = []
+        for obj in self.objects:
+            for alias in obj.get("aliases", []):
+                if alias not in all_children:
+                    roots.append(alias)
+        return roots

@@ -2,3 +2,4 @@ __pycache__/
 venv/
 editors/__pycache__/
 build/
+collected_objclasses.json
