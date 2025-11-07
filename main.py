@@ -12,7 +12,26 @@ def __init__():
     from editors.gravestone_properties import GravestonePropertiesDialog
     from editors.zombie_potion_module import ZombiePotionModuleDialog
     from editors.seedbank_properties import SeedBankPropertiesDialog
+    from editors.last_stand import LastStandMinigameDialog
+    from editors.conveyor_seedbank import ConveyorSeedBankDialog
+    from editors.modify_conveyor import ModifyConveyorDialog
+    from editors.power_tile_properties import PowerTileDialog
+    from editors.mold_colony_challenge import MoldColonyChallengeDialog
+    from editors.pirate_plank_properties import PiratePlankDialog
+    from editors.star_challenge_beat_level import StarChallengeBeatTheLevelDialog
+    from editors.star_challenge_kill_zombies_time import StarChallengeKillZombiesInTimeDialog
+    from editors.star_challenge_plants_lost import StarChallengePlantsLostDialog
+    from editors.star_challenge_simultaneous_plants import StarChallengeSimultaneousPlantsDialog
+    from editors.star_challenge_sun_produced import StarChallengeSunProducedDialog
+    from editors.star_challenge_zombie_distance import StarChallengeZombieDistanceDialog
+    from editors.star_challenge_module import StarChallengeModuleDialog
 
+    ObjectEditorFactory.register("PiratePlankProperties", PiratePlankDialog)
+    ObjectEditorFactory.register("MoldColonyChallengeProps", MoldColonyChallengeDialog)
+    ObjectEditorFactory.register("PowerTileProperties", PowerTileDialog)
+    ObjectEditorFactory.register("ModifyConveyorWaveActionProps", ModifyConveyorDialog)
+    ObjectEditorFactory.register("ConveyorSeedBankProperties", ConveyorSeedBankDialog)
+    ObjectEditorFactory.register("LastStandMinigameProperties", LastStandMinigameDialog)
     ObjectEditorFactory.register("SeedBankProperties", SeedBankPropertiesDialog)
     ObjectEditorFactory.register("GravestoneProperties", GravestonePropertiesDialog)
     ObjectEditorFactory.register("ZombiePotionModuleProperties", ZombiePotionModuleDialog)
@@ -20,6 +39,13 @@ def __init__():
     ObjectEditorFactory.register("WaveManagerProperties", WaveManagerDialog)
     ObjectEditorFactory.register("SpawnZombiesJitteredWaveActionProps", SpawnZombiesJitteredDialog)
     ObjectEditorFactory.register("WaveManagerModuleProperties", WaveManagerModuleDialog)
+    ObjectEditorFactory.register("StarChallengeBeatTheLevelProps", StarChallengeBeatTheLevelDialog)
+    ObjectEditorFactory.register("StarChallengeKillZombiesInTimeProps", StarChallengeKillZombiesInTimeDialog)
+    ObjectEditorFactory.register("StarChallengePlantsLostProps", StarChallengePlantsLostDialog)
+    ObjectEditorFactory.register("StarChallengeSimultaneousPlantsProps", StarChallengeSimultaneousPlantsDialog)
+    ObjectEditorFactory.register("StarChallengeSunProducedProps", StarChallengeSunProducedDialog)
+    ObjectEditorFactory.register("StarChallengeZombieDistanceProps", StarChallengeZombieDistanceDialog)
+    ObjectEditorFactory.register("StarChallengeModuleProperties", StarChallengeModuleDialog)
 
     try:
         GameData.load("game_data.json")

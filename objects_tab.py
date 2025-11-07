@@ -4,7 +4,7 @@ import copy
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QFormLayout, QHBoxLayout,
     QComboBox, QLineEdit, QPushButton, QLabel,
-    QListWidget, QMessageBox, QDialog
+    QListWidget, QMessageBox, QDialog, QInputDialog
 )
 from PyQt6.QtGui import QShortcut, QKeySequence
 from editors.base import ObjectEditorFactory, ReferenceLineEdit
@@ -115,6 +115,8 @@ class ObjectsTab(QWidget):
         # Generic: strip trailing 'Properties' (case-insensitive)
         if cls_name.lower().endswith("properties"):
             base = cls_name[: -len("properties")]
+        elif cls_name.lower().endswith("props"):
+            base = cls_name[: -len("props")]
         else:
             base = cls_name
         base = base or "Object"
@@ -127,6 +129,52 @@ class ObjectsTab(QWidget):
         cls_name = self.objclass.currentText()
         suggested = self.derive_alias_from_class(cls_name)
         self.aliases_input.setText(suggested)
+
+    # --------------------- ALIAS EXTRACTION ---------------------
+    def _extract_aliases_from_objdata(self, obj):
+        """Recursively extract RTID(xxx@CurrentLevel) children for 1 object."""
+        child_aliases = []
+
+        def extract_aliases(node):
+            if isinstance(node, dict):
+                for v in node.values():
+                    extract_aliases(v)
+            elif isinstance(node, list):
+                for v in node:
+                    extract_aliases(v)
+            elif isinstance(node, str):
+                if node.startswith("RTID(") and "@CurrentLevel)" in node:
+                    name = node.replace("RTID(", "").replace("@CurrentLevel)", "")
+                    if name not in child_aliases:
+                        child_aliases.append(name)
+
+        # Special handling for StarChallengeModuleProperties: Challenges can be list[list[str]] or list[str]
+        if obj["objclass"] == "StarChallengeModuleProperties":
+            challenges = obj["objdata"].get("Challenges", [])
+            if isinstance(challenges, list):
+                for group in challenges:
+                    if isinstance(group, list):
+                        for ref in group:
+                            if isinstance(ref, str) and ref.startswith("RTID(") and "@CurrentLevel)" in ref:
+                                name = ref.replace("RTID(", "").replace("@CurrentLevel)", "")
+                                if name not in child_aliases:
+                                    child_aliases.append(name)
+                    elif isinstance(group, str) and "RTID(" in group:
+                        name = group.replace("RTID(", "").replace("@CurrentLevel)", "")
+                        if name not in child_aliases:
+                            child_aliases.append(name)
+        else:
+            extract_aliases(obj["objdata"])
+
+        return list(set(child_aliases))
+
+    def rebuild_alias_tree(self):
+        """Recompute alias->children mapping from scratch for all objects."""
+        self.alias_tree = {}
+        for obj in self.objects:
+            child_aliases = self._extract_aliases_from_objdata(obj)
+            for parent_alias in obj.get("aliases", []):
+                self.alias_tree[parent_alias] = child_aliases
 
     # ----------------------------------------------------------
     def add_object(self):
@@ -156,7 +204,6 @@ class ObjectsTab(QWidget):
                 return
         else:
             # fallback to manual JSON entry
-            from PyQt6.QtWidgets import QInputDialog
             text, ok = QInputDialog.getMultiLineText(
                 self, "Custom Object Data",
                 f"Enter JSON for {objclass}:",
@@ -176,30 +223,15 @@ class ObjectsTab(QWidget):
             obj["aliases"] = [a.strip() for a in aliases_text.split(",") if a.strip()]
 
         self.objects.append(obj)
-
-        child_aliases = []
-        def extract_aliases(node):
-            if isinstance(node, dict):
-                for v in node.values():
-                    extract_aliases(v)
-            elif isinstance(node, list):
-                for v in node:
-                    extract_aliases(v)
-            elif isinstance(node, str) and "@CurrentLevel" in node:
-                name = node.replace("RTID(", "").replace("@CurrentLevel)", "")
-                child_aliases.append(name)
-
-        extract_aliases(obj["objdata"])
-
-        for parent_alias in obj.get("aliases", []):
-            self.alias_tree[parent_alias] = list(set(child_aliases))
-
         self.objects_list.addItem(f"{objclass} (aliases: {aliases_text or 'None'})")
         self.aliases_input.clear()
 
         # Convenience: if user is adding many Waves in a row, prefill next WaveN
         if objclass == "SpawnZombiesJitteredWaveActionProps":
             self.aliases_input.setText(self.next_wave_alias())
+
+        # --- rebuild alias tree globally (robust for all ops)
+        self.rebuild_alias_tree()
 
         # refresh reference completers everywhere
         for dlg in self.findChildren(QDialog):
@@ -216,8 +248,9 @@ class ObjectsTab(QWidget):
         objclass = obj["objclass"]
 
         # --- Edit aliases first
-        from PyQt6.QtWidgets import QInputDialog
-        alias_text = ", ".join(obj.get("aliases", []))
+        alias_before = list(obj.get("aliases", []))
+        alias_text = ", ".join(alias_before)
+
         new_aliases_text, ok_alias = QInputDialog.getText(
             self,
             "Edit Aliases",
@@ -229,10 +262,11 @@ class ObjectsTab(QWidget):
             if not new_aliases:
                 QMessageBox.warning(self, "Alias Required", "You must keep at least one alias for this object.")
                 return
-            # Enforce uniqueness when user edits
+            # Enforce uniqueness when user edits (ignore collisions with self)
             deduped = []
+            current_aliases = self.existing_aliases() - set(alias_before)
             for a in new_aliases:
-                if a in self.existing_aliases() and a not in obj.get("aliases", []):
+                if a in current_aliases:
                     a = self.unique_alias(a)
                 deduped.append(a)
             obj["aliases"] = deduped
@@ -261,9 +295,13 @@ class ObjectsTab(QWidget):
                     QMessageBox.warning(self, "Invalid JSON", str(e))
                     return
 
+        # Update list display text
         alias_display = ", ".join(obj.get("aliases", [])) or "None"
         item.setText(f"{objclass} (aliases: {alias_display})")
         self.objects[index] = obj
+
+        # --- rebuild alias tree since aliases/objdata may have changed
+        self.rebuild_alias_tree()
 
         # refresh completers
         for dlg in self.findChildren(QDialog):
@@ -275,10 +313,19 @@ class ObjectsTab(QWidget):
     # ----------------------------------------------------------
     def remove_object(self):
         """Remove selected item(s)."""
-        for item in self.objects_list.selectedItems():
+        selected = self.objects_list.selectedItems()
+        if not selected:
+            return
+        # Remove from data & UI
+        for item in selected:
             idx = self.objects_list.row(item)
             self.objects_list.takeItem(idx)
             self.objects.pop(idx)
+
+        # --- rebuild alias tree after removal
+        self.rebuild_alias_tree()
+
+        # refresh completers
         for dlg in self.findChildren(QDialog):
             for edit in dlg.findChildren(QLineEdit):
                 if isinstance(edit, ReferenceLineEdit):
@@ -314,6 +361,9 @@ class ObjectsTab(QWidget):
         alias_text = ", ".join(aliases)
         self.objects_list.addItem(f"{new_obj['objclass']} (aliases: {alias_text})")
 
+        # --- rebuild alias tree after paste
+        self.rebuild_alias_tree()
+
         # Refresh reference completers
         for dlg in self.findChildren(QDialog):
             for edit in dlg.findChildren(QLineEdit):
@@ -339,6 +389,9 @@ class ObjectsTab(QWidget):
         alias_text = ", ".join(aliases)
         self.objects_list.addItem(f"{new_obj['objclass']} (aliases: {alias_text})")
 
+        # --- rebuild alias tree after paste raw
+        self.rebuild_alias_tree()
+
         # Refresh all completers
         for dlg in self.findChildren(QDialog):
             for edit in dlg.findChildren(QLineEdit):
@@ -356,23 +409,8 @@ class ObjectsTab(QWidget):
             alias_text = ", ".join(obj.get("aliases", []))
             self.objects_list.addItem(f"{obj['objclass']} (aliases: {alias_text or 'None'})")
 
-        # rebuild alias tree after loading
-        self.alias_tree = {}
-        for obj in self.objects:
-            child_aliases = []
-            def extract_aliases(node):
-                if isinstance(node, dict):
-                    for v in node.values():
-                        extract_aliases(v)
-                elif isinstance(node, list):
-                    for v in node:
-                        extract_aliases(v)
-                elif isinstance(node, str) and "@CurrentLevel" in node:
-                    name = node.replace("RTID(", "").replace("@CurrentLevel)", "")
-                    child_aliases.append(name)
-            extract_aliases(obj["objdata"])
-            for parent_alias in obj.get("aliases", []):
-                self.alias_tree[parent_alias] = list(set(child_aliases))
+        # --- rebuild alias tree after loading
+        self.rebuild_alias_tree()
 
     def get_root_aliases(self):
         """Return only aliases that are not referenced as children anywhere."""

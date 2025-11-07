@@ -31,6 +31,21 @@ class WaveManagerDialog(QDialog):
         form.addRow("Wave Count:", self.wave_count)
         form.addRow("FlagWaveVeteranOverrideTypes (comma separated):", self.flag_override)
 
+        self.max_next_hp = QDoubleSpinBox(); self.max_next_hp.setRange(0.0, 1.0); self.max_next_hp.setSingleStep(0.05)
+        self.min_next_hp = QDoubleSpinBox(); self.min_next_hp.setRange(0.0, 1.0); self.min_next_hp.setSingleStep(0.05)
+        self.wave_points_inc = QSpinBox(); self.wave_points_inc.setRange(0, 99999)
+        self.wave_points = QSpinBox(); self.wave_points.setRange(0, 99999)
+
+        self.max_next_hp.setValue(data.get("MaxNextWaveHealthPercentage", 0.0))
+        self.min_next_hp.setValue(data.get("MinNextWaveHealthPercentage", 0.0))
+        self.wave_points_inc.setValue(data.get("WaveSpendingPointIncrement", 0))
+        self.wave_points.setValue(data.get("WaveSpendingPoints", 0))
+
+        form.addRow("Max Next Wave Health %:", self.max_next_hp)
+        form.addRow("Min Next Wave Health %:", self.min_next_hp)
+        form.addRow("Wave Spending Point Increment:", self.wave_points_inc)
+        form.addRow("Wave Spending Points:", self.wave_points)
+
         layout.addLayout(form)
 
         # -------------------------------
@@ -188,6 +203,16 @@ class WaveManagerDialog(QDialog):
         if overrides:
             data["FlagWaveVeteranOverrideTypes"] = overrides
 
+        # Optional values — chỉ thêm khi khác 0
+        if self.max_next_hp.value() > 0:
+            data["MaxNextWaveHealthPercentage"] = round(self.max_next_hp.value(), 3)
+        if self.min_next_hp.value() > 0:
+            data["MinNextWaveHealthPercentage"] = round(self.min_next_hp.value(), 3)
+        if self.wave_points_inc.value() > 0:
+            data["WaveSpendingPointIncrement"] = self.wave_points_inc.value()
+        if self.wave_points.value() > 0:
+            data["WaveSpendingPoints"] = self.wave_points.value()
+
         return data
 
 
@@ -233,7 +258,7 @@ class WaveArrayDialog(QDialog):
         layout = QVBoxLayout(input_dialog)
         ref_input = ReferenceLineEdit(
             object_list=getattr(self.parent(), "object_list_ref", []),
-            allowed_classes=["SpawnZombiesJitteredWaveActionProps"]
+            allowed_classes=["SpawnZombiesJitteredWaveActionProps", "ModifyConveyorWaveActionProps"]
         )
         ref_input.setPlaceholderText("Type or select alias (e.g. Wave1)")
         layout.addWidget(QLabel("Select or type a wave:"))
@@ -245,9 +270,9 @@ class WaveArrayDialog(QDialog):
         buttons.rejected.connect(input_dialog.reject)
 
         if input_dialog.exec() == QDialog.DialogCode.Accepted:
-            text = ref_input.text().strip()
-            if text:
-                self.list.addItem(text)
+            value = ref_input.get_rtid_value().strip()
+            if value:
+                self.list.addItem(value)
 
     def remove_selected(self):
         for item in self.list.selectedItems():

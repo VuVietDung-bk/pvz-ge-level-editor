@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QFormLayout, QLineEdit,
-    QComboBox, QLabel, QListWidget, QListWidgetItem
+    QComboBox, QLabel, QListWidget, QListWidgetItem,
+    QCheckBox, QScrollArea, QWidget as QW, QGridLayout
 )
 from PyQt6.QtCore import Qt
 from data_loader import GameData
@@ -39,16 +40,18 @@ class LevelDefinitionTab(QWidget):
         self.mower_module.addItem("None")
         self.mower_module.addItems(GameData.get_flat_list("Lawn Mowers"))
 
-        # --- Modules selection ---
-        self.modules_list = QListWidget()
-        self.modules_list.setSelectionMode(QListWidget.SelectionMode.MultiSelection)
-        modules = GameData.get_flat_list("Modules")
+        # -------- Modules selection (3 columns, show plain names) --------
+        self.modules_area = QScrollArea()
+        self.modules_area.setWidgetResizable(True)
+        self.modules_host = QW()
+        self.modules_grid = QGridLayout(self.modules_host)
+        self.modules_grid.setContentsMargins(0, 0, 0, 0)
+        self.modules_grid.setHorizontalSpacing(16)
+        self.modules_grid.setVerticalSpacing(8)
 
-        for m in modules:
-            item = QListWidgetItem(f"RTID({m}@LevelModules)")
-            item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
-            item.setCheckState(Qt.CheckState.Unchecked)
-            self.modules_list.addItem(item)
+        # danh sách checkbox: [(name, QCheckBox)]
+        self.module_checkboxes = []
+        modules = GameData.get_flat_list("Modules")  # list các tên (X), không phải RTID
 
         # Auto-check specific default modules
         default_auto_check = {
@@ -58,13 +61,18 @@ class LevelDefinitionTab(QWidget):
             "DefaultSunDropper",
         }
 
-        for i in range(self.modules_list.count()):
-            item = self.modules_list.item(i)
-            # extract module code from text "RTID(X@LevelModules)"
-            text = item.text()
-            match = re.match(r"RTID\(([^@]+)@LevelModules\)", text)
-            if match and match.group(1) in default_auto_check:
-                item.setCheckState(Qt.CheckState.Checked)
+        # tạo checkbox theo lưới 3 cột
+        cols = 3
+        for idx, name in enumerate(modules):
+            cb = QCheckBox(name)
+            if name in default_auto_check:
+                cb.setCheckState(Qt.CheckState.Checked)
+            self.module_checkboxes.append((name, cb))
+            r = idx // cols
+            c = idx % cols
+            self.modules_grid.addWidget(cb, r, c)
+
+        self.modules_area.setWidget(self.modules_host)
 
         # Layout setup
         form.addRow("Description:", self.description)
@@ -77,7 +85,7 @@ class LevelDefinitionTab(QWidget):
 
         self.layout.addLayout(form)
         self.layout.addWidget(QLabel("Modules:"))
-        self.layout.addWidget(self.modules_list)
+        self.layout.addWidget(self.modules_area)
         self.layout.addWidget(QLabel("Fixed Loot/Present tables will be auto-filled."))
 
         self.setLayout(self.layout)
@@ -85,11 +93,11 @@ class LevelDefinitionTab(QWidget):
     # --------------------------------------------------------
     def build_level_definition(self, alias_modules):
         """Return the JSON object for LevelDefinition."""
+        # Thu thập modules đã check, và bọc lại thành RTID(X@LevelModules)
         modules = []
-        for i in range(self.modules_list.count()):
-            item = self.modules_list.item(i)
-            if item.checkState() == Qt.CheckState.Checked:
-                modules.append(item.text())
+        for name, cb in self.module_checkboxes:
+            if cb.checkState() == Qt.CheckState.Checked:
+                modules.append(f"RTID({name}@LevelModules)")
 
         # Add mower module if not None
         if self.mower_module.currentText() != "None":
@@ -161,10 +169,12 @@ class LevelDefinitionTab(QWidget):
         else:
             self.mower_module.setCurrentText("None")
 
-        # Restore module check states
-        for i in range(self.modules_list.count()):
-            item = self.modules_list.item(i)
-            if item.text() in data.get("Modules", []):
-                item.setCheckState(Qt.CheckState.Checked)
-            else:
-                item.setCheckState(Qt.CheckState.Unchecked)
+        # Restore module check states (parse RTID(X@LevelModules) -> name)
+        checked_names = set()
+        for m in data.get("Modules", []):
+            if m.startswith("RTID(") and "@LevelModules)" in m:
+                name = m[len("RTID("):m.index("@LevelModules)")]
+                checked_names.add(name)
+
+        for name, cb in self.module_checkboxes:
+            cb.setCheckState(Qt.CheckState.Checked if name in checked_names else Qt.CheckState.Unchecked)

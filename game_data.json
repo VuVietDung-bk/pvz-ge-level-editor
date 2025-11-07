@@ -2812,7 +2812,29 @@
       "code": "PersuitStage"
     }
   ],
-  "Neon Jams": {},
+  "Neon Jams": [
+    {
+      "code": "jam_punk"
+    },
+    {
+      "code": "jam_pop"
+    },
+    {
+      "code": "jam_rap"
+    },
+    {
+      "code": "jam_8bit"
+    },
+    {
+      "code": "jam_metal"
+    },
+    {
+      "code": "jam_ballad"
+    },
+    {
+      "code": "jam_clear"
+    }
+  ],
   "Lawn Mowers": [
     {
       "name": "Front Lawn",
@@ -3511,9 +3533,6 @@
       "code": "IceageZombossIntro"
     },
     {
-      "code": "LastStand"
-    },
-    {
       "code": "LevelGenMoldChallenge"
     },
     {
@@ -3583,6 +3602,45 @@
     },
     {
       "code": "ZombiePotionModuleProperties"
+    },
+    {
+      "code": "LastStandMinigameProperties"
+    },
+    {
+      "code": "ConveyorSeedBankProperties"
+    },
+    {
+      "code": "ModifyConveyorWaveActionProps"
+    },
+    {
+      "code": "PowerTileProperties"
+    },
+    {
+      "code": "MoldColonyChallengeProps"
+    },
+    {
+      "code": "PiratePlankProperties"
+    },
+    {
+      "code": "StarChallengeBeatTheLevelProps"
+    },
+    {
+      "code": "StarChallengeKillZombiesInTimeProps"
+    },
+    {
+      "code": "StarChallengePlantsLostProps"
+    },
+    {
+      "code": "StarChallengeSimultaneousPlantsProps"
+    },
+    {
+      "code": "StarChallengeSunProducedProps"
+    },
+    {
+      "code": "StarChallengeZombieDistanceProps"
+    },
+    {
+      "code": "StarChallengeModuleProperties"
     }
   ]
 }

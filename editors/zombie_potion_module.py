@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QFormLayout, QDoubleSpinBox, QSpinBox, 
-    QDialogButtonBox, QHBoxLayout, QLabel, QListWidget, QListWidgetItem
+    QDialogButtonBox, QHBoxLayout, QLabel, QListWidget, QListWidgetItem, QCheckBox
 )
 from PyQt6.QtCore import Qt
 
@@ -50,6 +50,7 @@ class ZombiePotionModuleDialog(QDialog):
         self.potion_list = QListWidget()
         self.potion_list.setSelectionMode(QListWidget.SelectionMode.NoSelection)
         self.potion_list.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        
 
         existing_types = data.get("PotionTypes", [])
         for name, value in self.POTION_TYPES.items():
@@ -57,12 +58,17 @@ class ZombiePotionModuleDialog(QDialog):
             item.setFlags(item.flags() | Qt.ItemFlag.ItemIsUserCheckable)
             item.setCheckState(Qt.CheckState.Checked if value in existing_types else Qt.CheckState.Unchecked)
             self.potion_list.addItem(item)
+        
+        self.suppress_tip = QCheckBox("Suppress Objective Tip")
+        if str(data.get("SuppressObjectiveTip", "")).lower() == "true":
+            self.suppress_tip.setChecked(True)
 
         form.addRow("Initial Potion Count:", self.initial_count)
         form.addRow("Max Potion Count:", self.max_count)
         form.addRow("Potion Spawn Timer:", timer_box)
         form.addRow(QLabel("Potion Types:"))
         form.addRow(self.potion_list)
+        form.addRow(self.suppress_tip)
 
         # Buttons
         buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
@@ -81,8 +87,8 @@ class ZombiePotionModuleDialog(QDialog):
             item = self.potion_list.item(i)
             if item.checkState() == Qt.CheckState.Checked:
                 selected_potions.append(self.POTION_TYPES[item.text()])
-
-        return {
+        
+        obj = {
             "InitialPotionCount": self.initial_count.value(),
             "MaxPotionCount": self.max_count.value(),
             "PotionSpawnTimer": {
@@ -91,3 +97,8 @@ class ZombiePotionModuleDialog(QDialog):
             },
             "PotionTypes": selected_potions
         }
+
+        if self.suppress_tip.isChecked():
+            obj["SuppressObjectiveTip"] = True
+
+        return obj

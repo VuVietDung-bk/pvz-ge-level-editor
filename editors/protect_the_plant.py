@@ -29,11 +29,16 @@ class ProtectThePlantDialog(QDialog):
         # Buttons
         btn_add_plant = QPushButton("➕ Add Plant")
         btn_add_plant.clicked.connect(self.add_plant_popup)
+
+        btn_edit_plant = QPushButton("✏ Edit Selected")
+        btn_edit_plant.clicked.connect(self.edit_selected_plant)
+
         btn_remove_plant = QPushButton("🗑 Remove Selected")
         btn_remove_plant.clicked.connect(self.remove_selected_plant)
 
         btn_layout = QHBoxLayout()
         btn_layout.addWidget(btn_add_plant)
+        btn_layout.addWidget(btn_edit_plant)
         btn_layout.addWidget(btn_remove_plant)
 
         form.addRow("Must Protect Count:", self.must_count)
@@ -59,7 +64,31 @@ class ProtectThePlantDialog(QDialog):
             self.plants_list.addItem(f"({plant['GridX']}, {plant['GridY']}) - {plant['PlantType']}")
             self.must_count.setValue(self.plants_list.count())
 
+    def edit_selected_plant(self):
+        """Edit selected endangered plant entry."""
+        selected_items = self.plants_list.selectedItems()
+        if not selected_items:
+            QMessageBox.warning(self, "Edit Plant", "Please select a plant to edit.")
+            return
+
+        item = selected_items[0]
+        text = item.text()
+        coords, plant_type = text.split(" - ")
+        gridx, gridy = coords.strip("()").split(", ")
+        plant_type_clean = plant_type.replace("RTID(", "").replace("@PlantTypes)", "")
+
+        dlg = PlantEditorDialog(self)
+        dlg.gridx.setValue(int(gridx))
+        dlg.gridy.setValue(int(gridy))
+        dlg.plant_type.setText(plant_type_clean)
+
+        if dlg.exec() == QDialog.DialogCode.Accepted:
+            new_plant = dlg.get_data()
+            item.setText(f"({new_plant['GridX']}, {new_plant['GridY']}) - {new_plant['PlantType']}")
+            self.must_count.setValue(self.plants_list.count())
+
     def remove_selected_plant(self):
+        """Remove selected plant(s) from list."""
         for item in self.plants_list.selectedItems():
             self.plants_list.takeItem(self.plants_list.row(item))
         self.must_count.setValue(self.plants_list.count())
@@ -84,13 +113,17 @@ class ProtectThePlantDialog(QDialog):
 
 
 class PlantEditorDialog(QDialog):
-    """Sub-dialog to add one plant entry."""
+    """Sub-dialog to add or edit one plant entry."""
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Add Plant")
+        self.setWindowTitle("Plant Editor")
         layout = QFormLayout(self)
-        self.gridx = QSpinBox(); self.gridx.setRange(0, 8)
-        self.gridy = QSpinBox(); self.gridy.setRange(0, 5)
+
+        self.gridx = QSpinBox()
+        self.gridx.setRange(0, 8)
+
+        self.gridy = QSpinBox()
+        self.gridy.setRange(0, 5)
 
         self.plant_type = PlantLineEdit()
         self.plant_type.setPlaceholderText("Enter plant alias (e.g. cabbagepult)")
