@@ -1,7 +1,7 @@
 # GE Level Editor
 
 A **visual level editor** for creating and editing JSON/JSON5-based game levels.  
-GE Level Editor makes it easy to design levels for sandbox-style games without touching code.
+GE Level Editor makes it easy to design levels for PvZ GE without touching code.
 
 ---
 
@@ -37,6 +37,7 @@ Download and place the following files **in the same folder**:
   - `SpawnZombiesJitteredWaveActionProps`
   - `GravestoneProperties`
   - `ZombiePotionModuleProperties`
+  - `...`
 
 Finally, click **Generate JSON** to export your level as a `.json` file.
 
@@ -57,8 +58,8 @@ Make sure to tick **“Add Python to PATH”** during installation.
 Clone it via Git or download and extract the ZIP:
 
 ```bash
-git clone https://github.com/<yourname>/ge-editor.git
-cd ge-editor
+git clone https://github.com/VuVietDung-bk/pvz-ge-level-editor.git
+cd pvz-ge-level-editor
 ```
 
 ---
@@ -68,11 +69,6 @@ cd ge-editor
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-If you don’t have a `requirements.txt`, manually install:
-```bash
-pip install PyQt6 pyinstaller json5
 ```
 
 ---
