@@ -44,7 +44,7 @@ class SeedBankPropertiesDialog(QDialog):
 
         # --------------------------
         # Plant Lists
-        self.preset_list = EditablePlantList("Preset Plant List", data.get("PresetPlantList", []))
+        self.preset_list = PresetPlantList("Preset Plant List", data.get("PresetPlantList", []))
         self.exclude_list = EditablePlantList("Plant Exclude List", data.get("PlantExcludeList", []))
         self.include_list = EditablePlantList("Plant Include List", data.get("PlantIncludeList", []))
 
@@ -80,7 +80,9 @@ class SeedBankPropertiesDialog(QDialog):
         include_plants = self.include_list.get_values()
 
         if preset_plants:
-            obj["PresetPlantList"] = preset_plants
+            obj["PresetPlantList"] = [
+                {"PlantType": plant, "Level": -1} for plant in preset_plants
+            ]
         if exclude_plants:
             obj["PlantExcludeList"] = exclude_plants
         if include_plants:
@@ -99,10 +101,10 @@ class SeedBankPropertiesDialog(QDialog):
 
 
 # ============================================================
-# Helper widget: Plant list with add/remove/autocomplete
+# Helper widget: Base Plant List (exclude/include)
 # ============================================================
 class EditablePlantList(QDialog):
-    """Widget for editing a list of plants with autocomplete."""
+    """Widget for editing a simple list of plant names with autocomplete."""
     def __init__(self, title, values=None, parent=None):
         super().__init__(parent)
         self.setWindowTitle(title)
@@ -111,6 +113,7 @@ class EditablePlantList(QDialog):
         self.layout = QVBoxLayout()
         self.label = QLabel(title)
         self.list_widget = QListWidget()
+
         for v in self.values:
             self.list_widget.addItem(v)
 
@@ -143,10 +146,33 @@ class EditablePlantList(QDialog):
             self.list_widget.takeItem(self.list_widget.row(i))
 
     def get_values(self):
-        values = [self.list_widget.item(i).text() for i in range(self.list_widget.count())]
-        return values
+        return [self.list_widget.item(i).text() for i in range(self.list_widget.count())]
 
 
+# ============================================================
+# Preset Plant List (special format)
+# ============================================================
+class PresetPlantList(EditablePlantList):
+    """Specialized list for PresetPlantList with 'Level': -1 hardcoded."""
+    def __init__(self, title, values=None, parent=None):
+        # Convert loaded list of dicts into names only
+        converted = []
+        if isinstance(values, list):
+            for v in values:
+                if isinstance(v, dict) and "PlantType" in v:
+                    converted.append(v["PlantType"])
+                elif isinstance(v, str):
+                    converted.append(v)
+        super().__init__(title, converted, parent)
+
+    def get_values(self):
+        """Return only plant names (used by parent dialog)."""
+        return super().get_values()
+
+
+# ============================================================
+# Dialog for adding one plant
+# ============================================================
 class PlantInputDialog(QDialog):
     """Dialog for adding a single plant with autocomplete."""
     def __init__(self, parent=None):
@@ -154,6 +180,7 @@ class PlantInputDialog(QDialog):
         self.setWindowTitle("Add Plant")
         self.resize(300, 150)
         layout = QVBoxLayout()
+
         self.plant_input = PlantLineEdit()
         layout.addWidget(QLabel("Plant Type ID:"))
         layout.addWidget(self.plant_input)

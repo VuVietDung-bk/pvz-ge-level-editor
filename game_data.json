@@ -3641,6 +3641,9 @@
     },
     {
       "code": "StarChallengeModuleProperties"
+    },
+    {
+      "code": "StarChallengeSunUsedProps"
     }
   ]
 }

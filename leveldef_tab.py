@@ -20,6 +20,7 @@ class LevelDefinitionTab(QWidget):
         self.level_number = QLineEdit("1")
         self.name = QLineEdit("Unnamed Level")
         self.written_by = QLineEdit("unnamed")
+        self.starting_sun = QLineEdit("50")
 
         # Fixed internal fields (not user editable)
         self.loot = "RTID(DefaultLoot@LevelModules)"
@@ -79,6 +80,7 @@ class LevelDefinitionTab(QWidget):
         form.addRow("Level Number:", self.level_number)
         form.addRow("Level Name:", self.name)
         form.addRow("Written By:", self.written_by)
+        form.addRow("Starting Sun:", self.starting_sun)
         form.addRow("Music Type:", self.music_type)
         form.addRow("Stage:", self.stage_module)
         form.addRow("Mower:", self.mower_module)
@@ -129,6 +131,10 @@ class LevelDefinitionTab(QWidget):
         if self.music_type.currentText() != "None":
             objdata["MusicType"] = self.music_type.currentText()
 
+        # Handle Starting Sun
+        if self.starting_sun.text() != "50":
+            objdata["StartingSun"] = self.starting_sun.text() 
+
         return {
             "objclass": "LevelDefinition",
             "objdata": objdata
@@ -141,6 +147,7 @@ class LevelDefinitionTab(QWidget):
         self.level_number.setText(str(data.get("LevelNumber", 1)))
         self.name.setText(data.get("Name", ""))
         self.written_by.setText(data.get("WritenBy", ""))
+        self.starting_sun.setText(data.get("Starting", "50"))
 
         # Stage module
         stage = data.get("StageModule", "")

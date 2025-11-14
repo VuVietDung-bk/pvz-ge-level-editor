@@ -25,6 +25,7 @@ def __init__():
     from editors.star_challenge_sun_produced import StarChallengeSunProducedDialog
     from editors.star_challenge_zombie_distance import StarChallengeZombieDistanceDialog
     from editors.star_challenge_module import StarChallengeModuleDialog
+    from editors.star_challenge_sun_used import StarChallengeSunUsedPropsDialog
 
     ObjectEditorFactory.register("PiratePlankProperties", PiratePlankDialog)
     ObjectEditorFactory.register("MoldColonyChallengeProps", MoldColonyChallengeDialog)
@@ -46,6 +47,7 @@ def __init__():
     ObjectEditorFactory.register("StarChallengeSunProducedProps", StarChallengeSunProducedDialog)
     ObjectEditorFactory.register("StarChallengeZombieDistanceProps", StarChallengeZombieDistanceDialog)
     ObjectEditorFactory.register("StarChallengeModuleProperties", StarChallengeModuleDialog)
+    ObjectEditorFactory.register("StarChallengeSunUsedProps", StarChallengeSunUsedPropsDialog)
 
     try:
         GameData.load("game_data.json")

@@ -18,7 +18,8 @@ class StarChallengeModuleDialog(QDialog):
         "StarChallengePlantsLostProps",
         "StarChallengeSimultaneousPlantsProps",
         "StarChallengeSunProducedProps",
-        "StarChallengeZombieDistanceProps"
+        "StarChallengeZombieDistanceProps",
+        "StarChallengeSunUsedProps"
     ]
 
     def __init__(self, parent=None, existing_data=None):
