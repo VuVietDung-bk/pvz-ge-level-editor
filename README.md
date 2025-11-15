@@ -15,6 +15,7 @@ Download and place the following files **in the same folder**:
 |------|----------|
 | `GE-Level-Editor.exe` | The main application |
 | `game_data.json` | Internal data for autocomplete (plants, zombies, modules, etc.) |
+| `tutorial_level.json` | The template level to load to the app upon start-up (optional) |
 
 ---
 
@@ -96,6 +97,7 @@ You only need to distribute:
 ```
 GE-Level-Editor.exe
 game_data.json
+tutorial_level.json
 ```
 
 ---
@@ -107,6 +109,7 @@ pvz-ge-level-editor/
 │
 ├── editors/                # Object editor modules
 ├── game_data.json          # Internal game data (plants, zombies, etc.)
+├── tutorial_level.json     # The template level to load to the app upon start-up
 ├── main.py                 # Main entry point
 ├── ge_editor.spec          # Build config for PyInstaller
 ├── info_tab.py             # Info tab (author, version, etc.)
@@ -120,7 +123,8 @@ pvz-ge-level-editor/
 
 ## Notes
 
-- Always keep `game_data.json` in the same folder as the executable.  
+- Always keep `game_data.json` in the same folder as the executable.
+- If you don't keep `tutorial_level.json` in the same folder as the executable, the application will not load anything upon start-up, but you can still use it normally.
 - You can open and edit existing `.json` or `.json5` levels seamlessly.
 
 ---
@@ -131,6 +135,7 @@ pvz-ge-level-editor/
 |------|--------------|----------|
 | `GE-Level-Editor.exe` | Main application | ✅ |
 | `game_data.json` | Autocomplete data | ✅ |
+| `tutorial_level.json` | Template level | ❌ |
 | `ge_editor.spec` | Build config (for developers) | ❌ |
 | `editors/` | Needed only for source version | ❌ |
 
