@@ -1,5 +1,6 @@
 import json
 import json5
+import os
 
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QTextEdit, QPushButton,
@@ -47,6 +48,13 @@ class EditorWindow(QMainWindow):
         container = QWidget()
         container.setLayout(main_layout)
         self.setCentralWidget(container)
+        
+        tutorial_path = "tutorial_level.json"
+        if os.path.exists(tutorial_path):
+            try:
+                self.load_json_from_path(tutorial_path)
+            except Exception as e:
+                a = 1
 
     # ---------------------------------------------------
     def generate_full_json(self):
@@ -144,6 +152,34 @@ class EditorWindow(QMainWindow):
         self.objects_tab.load_from_json(other_objs)
 
         QMessageBox.information(self, "Loaded", "File loaded and state updated successfully!")
+
+    def load_json_from_path(self, file_name):
+        """Load JSON from a direct file path without dialog."""
+        try:
+            with open(file_name, "r", encoding="utf-8") as f:
+                data = json5.load(f)
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Could not read file:\n{e}")
+            return
+
+        # Cập nhật text editor
+        self.json_editor.setText(json.dumps(data, indent=2, ensure_ascii=False))
+
+        # --- Cập nhật các tab ---
+        if "Information" in data:
+            self.info_tab.load_from_json(data["Information"])
+
+        level_def = next(
+            (obj for obj in data.get("objects", []) if obj.get("objclass") == "LevelDefinition"), None
+        )
+        if level_def:
+            self.leveldef_tab.load_from_json(level_def["objdata"])
+
+        other_objs = [
+            o for o in data.get("objects", [])
+            if o.get("objclass") != "LevelDefinition"
+        ]
+        self.objects_tab.load_from_json(other_objs)
 
     def save_json(self):
         try:

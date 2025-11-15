@@ -77,6 +77,13 @@ class GridItemLineEdit(ReferenceLineEdit):
         if not alias:
             return ""
         return f"RTID({alias}@GridItem)"
+    
+class ConditionLineEdit(ReferenceLineEdit):
+    """Autocomplete for condition strings from GameData."""
+    def __init__(self, *args, **kwargs):
+        conditions = GameData.get_flat_list("Conditions")
+        super().__init__(object_list=[{"aliases": conditions}], *args, **kwargs)
+        self.setPlaceholderText("Condition (e.g. icecubed, frozen, wet)")
 
 class ReferenceValidator:
     """Cross-object RTID validator."""

@@ -21,7 +21,6 @@
           "RTID(StandardIntro@LevelModules)",
           "RTID(ZombiesDeadWinCon@LevelModules)",
           "RTID(WaveManagerModule@CurrentLevel)",
-          "RTID(SunUsed@CurrentLevel)",
           "RTID(SeedBank@CurrentLevel)"
         ],
         "Name": "Unnamed Level",
@@ -140,26 +139,12 @@
       ]
     },
     {
-      "objclass": "SpawnZombiesJitteredWaveActionProps",
+      "objclass": "SeedBankProperties",
       "objdata": {
-        "Zombies": [
-          {
-            "Type": "RTID(tutorial@ZombieTypes)"
-          }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        "SelectionMethod": "chooser"
       },
       "aliases": [
-        "Wave2"
+        "SeedBank"
       ]
     },
     {
@@ -169,40 +154,7 @@
           {
             "Type": "RTID(tutorial@ZombieTypes)"
           }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
-      },
-      "aliases": [
-        "Wave3"
-      ]
-    },
-    {
-      "objclass": "SpawnZombiesJitteredWaveActionProps",
-      "objdata": {
-        "Zombies": [
-          {
-            "Type": "RTID(tutorial@ZombieTypes)"
-          }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        ]
       },
       "aliases": [
         "Wave1"
@@ -215,17 +167,33 @@
           {
             "Type": "RTID(tutorial@ZombieTypes)"
           }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        ]
+      },
+      "aliases": [
+        "Wave2"
+      ]
+    },
+    {
+      "objclass": "SpawnZombiesJitteredWaveActionProps",
+      "objdata": {
+        "Zombies": [
+          {
+            "Type": "RTID(tutorial@ZombieTypes)"
+          }
+        ]
+      },
+      "aliases": [
+        "Wave3"
+      ]
+    },
+    {
+      "objclass": "SpawnZombiesJitteredWaveActionProps",
+      "objdata": {
+        "Zombies": [
+          {
+            "Type": "RTID(tutorial@ZombieTypes)"
+          }
+        ]
       },
       "aliases": [
         "Wave4"
@@ -238,17 +206,7 @@
           {
             "Type": "RTID(tutorial@ZombieTypes)"
           }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        ]
       },
       "aliases": [
         "Wave5"
@@ -261,17 +219,7 @@
           {
             "Type": "RTID(tutorial@ZombieTypes)"
           }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        ]
       },
       "aliases": [
         "Wave6"
@@ -284,17 +232,7 @@
           {
             "Type": "RTID(tutorial@ZombieTypes)"
           }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        ]
       },
       "aliases": [
         "Wave7"
@@ -307,17 +245,7 @@
           {
             "Type": "RTID(tutorial@ZombieTypes)"
           }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        ]
       },
       "aliases": [
         "Wave8"
@@ -330,17 +258,7 @@
           {
             "Type": "RTID(tutorial@ZombieTypes)"
           }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        ]
       },
       "aliases": [
         "Wave9"
@@ -353,38 +271,10 @@
           {
             "Type": "RTID(tutorial@ZombieTypes)"
           }
-        ],
-        "DynamicPlantfood": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "AdditionalPlantfood": 0
+        ]
       },
       "aliases": [
         "Wave10"
-      ]
-    },
-    {
-      "objclass": "StarChallengeSunUsedProps",
-      "objdata": {
-        "MaximumSun": 500
-      },
-      "aliases": [
-        "SunUsed"
-      ]
-    },
-    {
-      "objclass": "SeedBankProperties",
-      "objdata": {
-        "SelectionMethod": "chooser"
-      },
-      "aliases": [
-        "SeedBank"
       ]
     }
   ],

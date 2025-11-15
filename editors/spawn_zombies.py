@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QListWidget, QHBoxLayout,
     QPushButton, QDialogButtonBox, QMessageBox, QFormLayout,
-    QLabel, QSpinBox, QComboBox, QGridLayout
+    QLabel, QSpinBox, QComboBox, QGridLayout, QCheckBox
 )
 from PyQt6.QtCore import Qt
 from editors.base import ZombieLineEdit
@@ -14,23 +14,31 @@ class SpawnZombiesJitteredDialog(QDialog):
     def __init__(self, parent=None, existing_data=None):
         super().__init__(parent)
         self.setWindowTitle("Edit SpawnZombiesJitteredWaveActionProps")
-        self.resize(600, 500)
+        self.resize(650, 650)
 
         data = existing_data or {}
         layout = QVBoxLayout()
 
-        # ========== Zombies List ==========
+        # =============================================
+        # ZOMBIE LIST
+        # =============================================
         layout.addWidget(QLabel("<b>Zombie Spawn List</b>"))
         self.zombie_list = QListWidget()
+
         for z in data.get("Zombies", []):
             t = z.get("Type", "")
             row = z.get("Row", 0)
             col = z.get("Column", 0)
+            carry = z.get("CarrySun", 0)
+
             desc = t
             if row != 0:
                 desc += f" → Row {row}"
             if col != 0:
                 desc += f", Col {col}"
+            if carry > 0:
+                desc += f"  ☼{carry}"
+
             self.zombie_list.addItem(desc)
 
         btn_add = QPushButton("➕ Add Zombie")
@@ -49,29 +57,36 @@ class SpawnZombiesJitteredDialog(QDialog):
         layout.addWidget(self.zombie_list)
         layout.addLayout(zbtns)
 
-        # ========== DynamicPlantfood ==========
-        layout.addWidget(QLabel("<b>Dynamic Plantfood</b>"))
-        self.dynamic_pf = []
-        grid = QGridLayout()
-        labels = ["Diff Null", "Diff Null", "Diff Null", "Diff D", "Diff C", "Diff B", "Diff A"]
-        defaults = data.get("DynamicPlantfood", [0] * 7)
-        for i in range(7):
-            sp = QSpinBox()
-            sp.setRange(0, 1)
-            sp.setValue(defaults[i] if i < len(defaults) else 0)
-            grid.addWidget(QLabel(labels[i]), i, 0)
-            grid.addWidget(sp, i, 1)
-            self.dynamic_pf.append(sp)
-        layout.addLayout(grid)
+        self.must_kill_all = QCheckBox("Must Kill All To Next Wave")
+        if str(data.get("MustKillAllToNextWave", "")).lower() == "true":
+            self.must_kill_all.setChecked(True)
 
-        # ========== AdditionalPlantfood ==========
+        layout.addWidget(self.must_kill_all)
+
         layout.addWidget(QLabel("<b>Additional Plantfood</b>"))
         self.additional_pf = QSpinBox()
         self.additional_pf.setRange(0, 10)
         self.additional_pf.setValue(data.get("AdditionalPlantfood", 0))
         layout.addWidget(self.additional_pf)
 
-        # ========== NotificationEvents ==========
+        layout.addWidget(QLabel("<b>Dynamic Plantfood (independent)</b>"))
+
+        self.dynamic_pf = []
+        grid = QGridLayout()
+        labels = ["Diff Null", "Diff Null", "Diff Null", "Diff D", "Diff C", "Diff B", "Diff A"]
+
+        defaults = data.get("DynamicPlantfood", [0] * 7)
+
+        for i in range(7):
+            sp = QSpinBox()
+            sp.setRange(0, 10)
+            sp.setValue(defaults[i] if i < len(defaults) else 0)
+            grid.addWidget(QLabel(labels[i]), i, 0)
+            grid.addWidget(sp, i, 1)
+            self.dynamic_pf.append(sp)
+
+        layout.addLayout(grid)
+
         layout.addWidget(QLabel("<b>Notification Event (Neon Jam)</b>"))
         self.event_combo = QComboBox()
         available_events = GameData.get_flat_list("Neon Jams")
@@ -80,32 +95,29 @@ class SpawnZombiesJitteredDialog(QDialog):
 
         chosen_events = data.get("NotificationEvents", [])
         if chosen_events:
-            ev = chosen_events[0]
-            if ev in available_events:
-                self.event_combo.setCurrentText(ev)
+            first = chosen_events[0]
+            if first in available_events:
+                self.event_combo.setCurrentText(first)
         else:
             self.event_combo.setCurrentText("None")
 
         layout.addWidget(self.event_combo)
 
-        # OK/Cancel
-        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok |
+            QDialogButtonBox.StandardButton.Cancel
+        )
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
 
         self.setLayout(layout)
 
-    # ========================================================
     def add_zombie(self):
         dlg = OneZombieDialog(self)
         if dlg.exec() == dlg.DialogCode.Accepted:
             z = dlg.get_data()
-            desc = z["Type"]
-            if z.get("Row", 0) != 0:
-                desc += f" → Row {z['Row']}"
-            if z.get("Column", 0) != 0:
-                desc += f", Col {z['Column']}"
+            desc = self.format_desc(z)
             self.zombie_list.addItem(desc)
 
     def edit_zombie(self):
@@ -115,72 +127,84 @@ class SpawnZombiesJitteredDialog(QDialog):
             return
 
         text = self.zombie_list.item(idx).text()
-        parts = text.split("→ Row")
-        ztype = parts[0].strip()
-        row = 0
-        col = 0
-        if len(parts) > 1:
-            rest = parts[1].strip()
-            if ", Col" in rest:
-                row_part, col_part = rest.split(", Col")
-                row = int(row_part.strip())
-                col = int(col_part.strip())
-            else:
-                row = int(rest.strip())
+        z = self.parse_desc(text)
 
-        dlg = OneZombieDialog(self, {"Type": ztype, "Row": row, "Column": col})
+        dlg = OneZombieDialog(self, z)
         if dlg.exec() == dlg.DialogCode.Accepted:
-            z = dlg.get_data()
-            desc = z["Type"]
-            if z.get("Row", 0) != 0:
-                desc += f" → Row {z['Row']}"
-            if z.get("Column", 0) != 0:
-                desc += f", Col {z['Column']}"
-            self.zombie_list.item(idx).setText(desc)
+            z2 = dlg.get_data()
+            self.zombie_list.item(idx).setText(self.format_desc(z2))
 
     def remove_zombie(self):
         for item in self.zombie_list.selectedItems():
             self.zombie_list.takeItem(self.zombie_list.row(item))
 
+    def format_desc(self, z):
+        desc = z["Type"]
+        if z.get("Row", 0) != 0:
+            desc += f" → Row {z['Row']}"
+        if z.get("Column", 0) != 0:
+            desc += f", Col {z['Column']}"
+        if z.get("CarrySun", 0) > 0:
+            desc += f"  ☼{z['CarrySun']}"
+        return desc
+
+    def parse_desc(self, text):
+        parts = text.split("→")
+        ztype = parts[0].strip()
+        row = 0
+        col = 0
+        carry = 0
+
+        if len(parts) > 1:
+            right = parts[1]
+
+            if "☼" in right:
+                right, carry_part = right.split("☼")
+                carry = int(carry_part.strip())
+
+            if "Col" in right:
+                row_part, col_part = right.split("Col")
+                row = int(row_part.replace("Row", "").strip().strip(","))
+                col = int(col_part.strip())
+            else:
+                row = int(right.replace("Row", "").strip())
+
+        return {"Type": ztype, "Row": row, "Column": col, "CarrySun": carry}
+
     # ========================================================
     def get_data(self):
         zombies = []
-        for i in range(self.zombie_list.count()):
-            text = self.zombie_list.item(i).text()
-            t = text.split("→")[0].strip()
-            row = 0
-            col = 0
-            if "Row" in text:
-                match = text.split("Row")[-1].strip()
-                if ", Col" in match:
-                    parts = match.split(", Col")
-                    row = int(parts[0].strip())
-                    col = int(parts[1].strip())
-                else:
-                    row = int(match.strip())
 
-            z_entry = {"Type": t}
-            if row != 0:
-                z_entry["Row"] = row
-            if col != 0:
-                z_entry["Column"] = col
+        for i in range(self.zombie_list.count()):
+            z = self.parse_desc(self.zombie_list.item(i).text())
+            z_entry = {"Type": z["Type"]}
+
+            if z["Row"] != 0:
+                z_entry["Row"] = z["Row"]
+            if z["Column"] != 0:
+                z_entry["Column"] = z["Column"]
+            if z["CarrySun"] > 0:
+                z_entry["CarrySun"] = z["CarrySun"]
+
             zombies.append(z_entry)
 
-        dyn_pf = [sp.value() for sp in self.dynamic_pf]
-        selected_event = self.event_combo.currentText()
-        event_value = selected_event if selected_event != "None" else None
+        result = {"Zombies": zombies}
 
-        result = {
-            "Zombies": zombies,
-            "DynamicPlantfood": dyn_pf,
-            "AdditionalPlantfood": self.additional_pf.value(),
-        }
+        if self.additional_pf.value() > 0:
+            result["AdditionalPlantfood"] = self.additional_pf.value()
 
-        if event_value:
-            result["NotificationEvents"] = [event_value]
+        dyn = [sp.value() for sp in self.dynamic_pf]
+        if any(val != 0 for val in dyn):
+            result["DynamicPlantfood"] = dyn
+
+        if self.must_kill_all.isChecked():
+            result["MustKillAllToNextWave"] = True
+
+        ev = self.event_combo.currentText()
+        if ev != "None":
+            result["NotificationEvents"] = [ev]
 
         return result
-
 
 class OneZombieDialog(QDialog):
     """Dialog to create or edit one zombie entry."""
@@ -193,18 +217,25 @@ class OneZombieDialog(QDialog):
         form = QFormLayout()
 
         self.ztype = ZombieLineEdit()
-        self.ztype.setText(data.get("Type", "").replace("RTID(", "").replace("@ZombieTypes)", ""))
+        cleaned = data.get("Type", "").replace("RTID(", "").replace("@ZombieTypes)", "")
+        self.ztype.setText(cleaned)
 
         self.row = QSpinBox(); self.row.setRange(0, 5)
         self.row.setValue(data.get("Row", 0))
+
         self.col = QSpinBox(); self.col.setRange(0, 9)
         self.col.setValue(data.get("Column", 0))
+
+        self.carry = QSpinBox(); self.carry.setRange(0, 999)
+        self.carry.setValue(data.get("CarrySun", 0))
 
         form.addRow("Zombie Type:", self.ztype)
         form.addRow("Row (0–5):", self.row)
         form.addRow("Column (0–9):", self.col)
+        form.addRow("Carry Sun:", self.carry)
 
-        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok |
+                                   QDialogButtonBox.StandardButton.Cancel)
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)
         form.addWidget(buttons)
@@ -212,13 +243,13 @@ class OneZombieDialog(QDialog):
         self.setLayout(form)
 
     def get_data(self):
-        ztype = f"RTID({self.ztype.text().strip()}@ZombieTypes)"
-        row = self.row.value()
-        col = self.col.value()
-
-        z_entry = {"Type": ztype}
-        if row != 0:
-            z_entry["Row"] = row
-        if col != 0:
-            z_entry["Column"] = col
-        return z_entry
+        z = {
+            "Type": f"RTID({self.ztype.text().strip()}@ZombieTypes)"
+        }
+        if self.row.value() != 0:
+            z["Row"] = self.row.value()
+        if self.col.value() != 0:
+            z["Column"] = self.col.value()
+        if self.carry.value() > 0:
+            z["CarrySun"] = self.carry.value()
+        return z

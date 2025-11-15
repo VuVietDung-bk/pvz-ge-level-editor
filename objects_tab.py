@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QShortcut, QKeySequence
 from editors.base import ObjectEditorFactory, ReferenceLineEdit
 from data_loader import GameData
+from PyQt6.QtCore import Qt
 
 class ObjectsTab(QWidget):
     """Tab for creating and managing 'objects' array in JSON."""
@@ -23,10 +24,25 @@ class ObjectsTab(QWidget):
         main_layout = QVBoxLayout()
         form_layout = QFormLayout()
 
+        # --- Build mapping display_name -> code_name ---
+        self.objclass_display_map = {}
+
+        objclasses = GameData.get("Objclasses")
+        # Build mapping: display name -> code (sorted by display name)
+        temp_map = {}
+
+        for entry in objclasses:
+            code = entry.get("code", "")
+            name = entry.get("name", code)
+            temp_map[name] = code
+
+        # Sort alphabetically by display name
+        self.objclass_display_map = dict(sorted(temp_map.items(), key=lambda x: x[0].lower()))
+
         # Object selection and alias
         self.objclass = QComboBox()
         self.objclass.addItem("<default-class>")
-        self.objclass.addItems(GameData.get_flat_list("Objclasses"))
+        self.objclass.addItems(self.objclass_display_map.keys())
 
         self.aliases_input = QLineEdit()
         form_layout.addRow("Object Class:", self.objclass)
@@ -57,6 +73,13 @@ class ObjectsTab(QWidget):
         # List of added objects
         self.objects_list = QListWidget()
         self.objects_list.itemDoubleClicked.connect(self.edit_object)
+
+        # Enable drag & drop reordering
+        self.objects_list.setDragDropMode(QListWidget.DragDropMode.InternalMove)
+        self.objects_list.setDefaultDropAction(Qt.DropAction.MoveAction)
+
+        # Sync data after reordering
+        self.objects_list.model().rowsMoved.connect(self.on_rows_moved)
 
         # Keyboard shortcuts (Ctrl+C / Ctrl+V)
         self.sc_copy = QShortcut(QKeySequence.StandardKey.Copy, self)
@@ -113,21 +136,26 @@ class ObjectsTab(QWidget):
             return self.next_wave_alias()
 
         # Generic: strip trailing 'Properties' (case-insensitive)
-        if cls_name.lower().endswith("properties"):
-            base = cls_name[: -len("properties")]
+        if cls_name.lower().endswith("challengeproperties"):
+            base = cls_name[: -len("challengeproperties")]
         elif cls_name.lower().endswith("props"):
             base = cls_name[: -len("props")]
+        elif cls_name.lower().endswith("properties"):
+            base = cls_name[: -len("properties")]
         else:
             base = cls_name
+
+        if base.lower().startswith("starchallenge"):
+            base = base[len("StarChallenge"):]
         base = base or "Object"
         return self.unique_alias(base)
 
     def suggest_alias_for_current_class(self):
-        # Only prefill if user hasn't typed anything
-        if self.aliases_input.text().strip():
-            return
-        cls_name = self.objclass.currentText()
-        suggested = self.derive_alias_from_class(cls_name)
+        display_name = self.objclass.currentText()
+
+        real_code = self.objclass_display_map.get(display_name, display_name)
+
+        suggested = self.derive_alias_from_class(real_code)
         self.aliases_input.setText(suggested)
 
     # --------------------- ALIAS EXTRACTION ---------------------
@@ -179,7 +207,8 @@ class ObjectsTab(QWidget):
     # ----------------------------------------------------------
     def add_object(self):
         """Open the appropriate editor dialog for the chosen objclass."""
-        objclass = self.objclass.currentText()
+        display_name = self.objclass.currentText()
+        objclass = self.objclass_display_map.get(display_name, display_name)
         aliases_text = self.aliases_input.text().strip()
 
         # If user left empty, auto-suggest now for convenience
@@ -424,3 +453,37 @@ class ObjectsTab(QWidget):
                 if alias not in all_children:
                     roots.append(alias)
         return roots
+    
+    def on_rows_moved(self, parent, start, end, destination, row):
+        """
+        Sync internal self.objects[] when user drag/drops items in QListWidget.
+        """
+        # QListWidget has already moved the visible item.
+        # Now we must reorder self.objects to match the list.
+
+        # Build new order from QListWidget
+        new_order = []
+        for i in range(self.objects_list.count()):
+            text = self.objects_list.item(i).text()
+            # find matching object
+            for obj in self.objects:
+                alias_text = ", ".join(obj.get("aliases", [])) or "None"
+                if text == f"{obj['objclass']} (aliases: {alias_text})":
+                    new_order.append(obj)
+                    break
+
+        # Replace internal array
+        if len(new_order) == len(self.objects):
+            self.objects = new_order
+        else:
+            print("Warning: reorder sync mismatch!")
+
+        # Rebuild alias tree because order might affect module chains
+        self.rebuild_alias_tree()
+
+        # Refresh all autocomplete reference editors
+        for dlg in self.findChildren(QDialog):
+            for edit in dlg.findChildren(QLineEdit):
+                if hasattr(edit, "object_list"):
+                    edit.object_list = self.objects
+                    edit.refresh_suggestions()

@@ -2669,7 +2669,49 @@
       "code": "ankylo"
     }
   ],
-  "Conditions": {},
+  "Conditions": [
+    {"code": "speedup1"},
+    {"code": "speedup2"},
+    {"code": "speedup3"},
+    {"code": "speedup4"},
+    {"code": "speeddown1"},
+    {"code": "speeddown2"},
+    {"code": "speeddown3"},
+    {"code": "speeddown4"},
+    {"code": "terrified"},
+    {"code": "chilled"},
+    {"code": "sapped"},
+    {"code": "stalled"},
+    {"code": "chill"},
+    {"code": "freeze"},
+    {"code": "stun"},
+    {"code": "butter"},
+    {"code": "bleeding"},
+    {"code": "lightning"},
+    {"code": "rush"},
+    {"code": "tossed"},
+    {"code": "warpingIn"},
+    {"code": "potionspeed1"},
+    {"code": "potionspeed2"},
+    {"code": "potionspeed3"},
+    {"code": "potiontoughness1"},
+    {"code": "potiontoughness2"},
+    {"code": "potiontoughness3"},
+    {"code": "hypnotized"},
+    {"code": "sunbeaned"},
+    {"code": "morphedtogargantuar"},
+    {"code": "damageflash"},
+    {"code": "zombossstun"},
+    {"code": "haunted"},
+    {"code": "icecubed"},
+    {"code": "unsuspendable"},
+    {"code": "invincible"},
+    {"code": "warpingOut"},
+    {"code": "poisoned"},
+    {"code": "contagiouspoison"},
+    {"code": "bloomingheartdebuff"},
+    {"code": "squidified"}
+    ],
   "Stages": [
     {
       "name": "Tutorial",
@@ -3583,67 +3625,108 @@
   ],
   "Objclasses": [
     {
+      "name": "Challenge: Protect Plants",
       "code": "ProtectThePlantChallengeProperties"
     },
     {
+      "name": "Seed Bank",
       "code": "SeedBankProperties"
     },
     {
+      "name": "Wave Manager",
       "code": "WaveManagerProperties"
     },
     {
+      "name": "Spawn Wave Of Zombies",
       "code": "SpawnZombiesJitteredWaveActionProps"
     },
     {
+      "name": "Wave Manager Module",
       "code": "WaveManagerModuleProperties"
     },
     {
+      "name": "Gravestone",
       "code": "GravestoneProperties"
     },
     {
+      "name": "Zombie Potions",
       "code": "ZombiePotionModuleProperties"
     },
     {
+      "name": "Last Stand",
       "code": "LastStandMinigameProperties"
     },
     {
+      "name": "Conveyor Seed Bank",
       "code": "ConveyorSeedBankProperties"
     },
     {
+      "name": "Modify Conveyor Wave",
       "code": "ModifyConveyorWaveActionProps"
     },
     {
+      "name": "Power Tiles",
       "code": "PowerTileProperties"
     },
     {
+      "name": "Challenge: Mold Colonies",
       "code": "MoldColonyChallengeProps"
     },
     {
+      "name": "Pirate Planks",
       "code": "PiratePlankProperties"
     },
     {
+      "name": "Challenge: Beat-the-level Texts",
       "code": "StarChallengeBeatTheLevelProps"
     },
     {
+      "name": "Challenge: Kill Zombies In Time",
       "code": "StarChallengeKillZombiesInTimeProps"
     },
     {
+      "name": "Challenge: No Lose More Than X Plants",
       "code": "StarChallengePlantsLostProps"
     },
     {
+      "name": "Challenge: Don't Have More Than X Plants",
       "code": "StarChallengeSimultaneousPlantsProps"
     },
     {
+      "name": "Challenge: Produce Sun",
       "code": "StarChallengeSunProducedProps"
     },
     {
+      "name": "Challenge: Don't Trample Flower",
       "code": "StarChallengeZombieDistanceProps"
     },
     {
+      "name": "Challenge Module",
       "code": "StarChallengeModuleProperties"
     },
     {
+      "name": "Challenge: Sun Usage Limit",
       "code": "StarChallengeSunUsedProps"
+    },
+    {
+      "name": "Initial Grid Items",
+      "code": "InitialGridItemProperties"
+    },
+    {
+      "name": "Initial Plants",
+      "code": "InitialPlantProperties"
+    },
+    {
+      "name": "Initial Zombies",
+      "code": "InitialZombieProperties"
+    },
+    {
+      "name": "Trap Tiles",
+      "code": "TrapTileProperties"
+    },
+    {
+      "name": "Railcarts",
+      "code": "RailcartProperties"
     }
   ]
 }

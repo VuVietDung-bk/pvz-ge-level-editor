@@ -1,0 +1,28 @@
+{
+  "Nah": {
+    "objclass": "SpawnZombiesJitteredWaveActionProps",
+    "objdata": {
+      "Zombies": [
+        {
+          "Type": "RTID(tutorial@ZombieTypes)"
+        }
+      ]
+    },
+    "aliases": [
+      "Wave10"
+    ]
+  },
+  "b": {
+    "objclass": "SpawnZombiesJitteredWaveActionProps",
+    "objdata": {
+      "Zombies": [
+        {
+          "Type": "RTID(tutorial@ZombieTypes)"
+        }
+      ]
+    },
+    "aliases": [
+      "Wave10"
+    ]
+  }
+}

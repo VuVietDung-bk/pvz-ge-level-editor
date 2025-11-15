@@ -26,7 +26,17 @@ def __init__():
     from editors.star_challenge_zombie_distance import StarChallengeZombieDistanceDialog
     from editors.star_challenge_module import StarChallengeModuleDialog
     from editors.star_challenge_sun_used import StarChallengeSunUsedPropsDialog
+    from editors.initial_grid_item import InitialGridItemDialog
+    from editors.initial_plant_properties import InitialPlantPropertiesEditor
+    from editors.initial_zombie_properties import InitialZombiePropertiesEditor
+    from editors.trap_tile_properties import TrapTilePropertiesEditor
+    from editors.railcart_properties import RailcartPropertiesDialog
 
+    ObjectEditorFactory.register("RailcartProperties", RailcartPropertiesDialog)
+    ObjectEditorFactory.register("TrapTileProperties", TrapTilePropertiesEditor)
+    ObjectEditorFactory.register("InitialZombieProperties", InitialZombiePropertiesEditor)
+    ObjectEditorFactory.register("InitialPlantProperties", InitialPlantPropertiesEditor)
+    ObjectEditorFactory.register("InitialGridItemProperties", InitialGridItemDialog)
     ObjectEditorFactory.register("PiratePlankProperties", PiratePlankDialog)
     ObjectEditorFactory.register("MoldColonyChallengeProps", MoldColonyChallengeDialog)
     ObjectEditorFactory.register("PowerTileProperties", PowerTileDialog)
